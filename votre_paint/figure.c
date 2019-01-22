@@ -13,3 +13,6 @@ void afficher_point(int x, int y, double r, double v, double b)
   glVertex2i(x,y);
   glEnd();
 }
+
+void cercle(){
+}
