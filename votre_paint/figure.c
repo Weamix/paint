@@ -14,5 +14,34 @@ void afficher_point(int x, int y, double r, double v, double b)
   glEnd();
 }
 
-void cercle(){
+void afficher_rectangle(int maxlarge,int maxhauteur,int xbase,int ybase)
+{
+  int i;
+  int j;
+  maxlarge = maxlarge - xbase ;
+  maxhauteur = maxhauteur - ybase ;
+  for (i = xbase; i < maxlarge ; i++)
+  {
+    glBegin(GL_POINTS);
+    glVertex2i(i,ybase);
+    glEnd();
+  }
+  for (i = maxlarge; i > xbase ; i--)
+  {
+    glBegin(GL_POINTS);
+    glVertex2i(i,maxhauteur);
+    glEnd();
+  }
+  for (j = ybase; j < maxhauteur ; j++)
+  {
+    glBegin(GL_POINTS);
+    glVertex2i(xbase,i);
+    glEnd();
+  }
+  for (j = maxhauteur; j > ybase ; j--)
+  {
+    glBegin(GL_POINTS);
+    glVertex2i(maxlarge,i);
+    glEnd();
+  }
 }

@@ -16,4 +16,5 @@ void afficher_texte(int x, int y, char *string, double r, double v, double b);
 
 void afficher_point(int x, int y, double r, double v, double b);
 
+void afficher_rectangle(int maxlarge, int maxhauteur, int xbase, int ybase);
 #endif

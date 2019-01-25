@@ -12,7 +12,7 @@ void initialisation_fenetre(){
   effacer();
   for(int i=100;i<500;i++)
     afficher_point(i,i,0,0,0);
-  
+
   afficher_texte(420,350,"ceci n'est pas une ligne",0,0,0);
 }
 
@@ -91,6 +91,19 @@ void affichage()
     effacer();
     choix=-1;
   }
+  if(choix=='9'){
+    int maxlarge, maxhauteur, xbase, ybase ;
+    printf(" entrez la coordonnée x de base");
+    scanf(" %d",&xbase);
+    printf(" entrez la coordonnée y de base");
+    scanf(" %d",&ybase);
+    printf(" entrez la coordonnée x maximum");
+    scanf(" %d",&maxlarge);
+    printf(" entrez la coordonnée y maximum");
+    scanf(" %d",&maxhauteur);
+    afficher_rectangle(maxlarge,maxhauteur,xbase,ybase);
+    choix=-1;
+  }
 
 }
 
@@ -114,17 +127,17 @@ void clic_droit(int x, int y){
 }
 
 void clavier(unsigned char key, int x, int y){
-  // Code exécuté lors d'un 
+  // Code exécuté lors d'un
   // Attention ! Pas de dessin dans cette fonction/procédure
   // Utilisez des variables globales si vous avez besoin de faire communiquer
   // cette procédure et celles du dessous.
-  
+
   printf("Appui sur la touche %c du clavier lorsque la souris est en %d %d\n",key,x,y);
 
   // Si la touche appuyée est un chiffre entre 1 et 6,
   // la case correspondante dans le tableau choix est mise à vrai.
   // Si une autre touche est appuyée, le programme se ferme.
-  if(key>='1' && key<='8')
+  if(key>='1' && key<='9')
     choix=key;
   else
     exit(0);
