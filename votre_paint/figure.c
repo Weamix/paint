@@ -14,34 +14,68 @@ void afficher_point(int x, int y, double r, double v, double b)
   glEnd();
 }
 
-void afficher_rectangle(int maxlarge,int maxhauteur,int xbase,int ybase)
+void afficher_rectangle(int large,int hauteur,int xbase,int ybase)
 {
   int i;
   int j;
-  maxlarge = maxlarge - xbase ;
-  maxhauteur = maxhauteur - ybase ;
-  for (i = xbase; i < maxlarge ; i++)
+  large=large+xbase;
+  hauteur=hauteur+ybase;
+  for (i = xbase; i <= large ; i++)
   {
-    glBegin(GL_POINTS);
-    glVertex2i(i,ybase);
-    glEnd();
+    afficher_point(i,ybase,0,0,0);
   }
-  for (i = maxlarge; i > xbase ; i--)
+  for (i = large; i >= xbase ; i--)
   {
-    glBegin(GL_POINTS);
-    glVertex2i(i,maxhauteur);
-    glEnd();
+    afficher_point(i,hauteur,0,0,0);
   }
-  for (j = ybase; j < maxhauteur ; j++)
+  for (j = ybase; j <= hauteur ; j++)
   {
-    glBegin(GL_POINTS);
-    glVertex2i(xbase,i);
-    glEnd();
+    afficher_point(xbase,j,0,0,0);
   }
-  for (j = maxhauteur; j > ybase ; j--)
+  for (j = hauteur; j >= ybase ; j--)
   {
-    glBegin(GL_POINTS);
-    glVertex2i(maxlarge,i);
-    glEnd();
+    afficher_point(large,j,0,0,0);
+  }
+}
+
+void afficher_cercle(int rayon,int x_centre,int y_centre)
+{
+int x ,y ,m ,tempx,tempy;
+x = 0 ;
+y = rayon ;
+m = 5 - 4*rayon ;
+while (x <= y )
+{
+    tempx = x+x_centre;
+    tempy = y+y_centre;
+		afficher_point(tempx,tempy,0,0,0) ;
+    tempx = y+x_centre;
+    tempy = x+y_centre;
+		afficher_point(tempx,tempy,0,0,0 ) ;
+    tempx = -x+x_centre;
+    tempy = y+y_centre;
+		afficher_point(tempx,tempy,0,0,0 ) ;
+    tempx = -y+x_centre;
+    tempy = x+y_centre;
+	  afficher_point(tempx,tempy ,0,0,0) ;
+    tempx = x+x_centre;
+    tempy = -y+y_centre;
+		afficher_point(tempx,tempy ,0,0,0) ;
+    tempx = y+x_centre;
+    tempy = -x+y_centre;
+		afficher_point(tempx,tempy,0,0,0 ) ;
+    tempx = -x+x_centre;
+    tempy = -y+y_centre;
+		afficher_point(tempx,tempy,0,0,0 ) ;
+    tempx = -y+x_centre;
+    tempy = -x+y_centre;
+		afficher_point(tempx,tempy,0,0,0 ) ;
+		if(m > 0)
+    {
+			y = y - 1 ;
+			m = m - 8*y ;
+		}
+		x = x + 1 ;
+		m = m + 8*x + 4 ;
   }
 }

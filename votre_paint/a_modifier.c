@@ -65,10 +65,14 @@ void affichage()
   }
 
   if(choix=='5'){
-    afficher_point(150,475,0,0,0);
-    afficher_point(150,476,0,0,0);
-    afficher_point(151,475,0,0,0);
-    afficher_point(151,476,0,0,0);
+    int x_centre,y_centre,rayon;
+    printf("Entrez la coordonnées X du centre du cercle :\n");
+    scanf(" %d",&x_centre);
+    printf("Entrez la coordonnées Y du centre du cercle :\n");
+    scanf(" %d",&y_centre);
+    printf("Entrez la longueur du rayon :\n");
+    scanf(" %d",&rayon);
+    afficher_cercle(rayon,x_centre,y_centre);
     choix=-1;
   }
 
@@ -92,16 +96,16 @@ void affichage()
     choix=-1;
   }
   if(choix=='9'){
-    int maxlarge, maxhauteur, xbase, ybase ;
-    printf(" entrez la coordonnée x de base");
+    int large,hauteur,xbase,ybase ;
+    printf(" entrez la coordonnée x de base : ");
     scanf(" %d",&xbase);
-    printf(" entrez la coordonnée y de base");
+    printf(" entrez la coordonnée y de base : ");
     scanf(" %d",&ybase);
-    printf(" entrez la coordonnée x maximum");
-    scanf(" %d",&maxlarge);
-    printf(" entrez la coordonnée y maximum");
-    scanf(" %d",&maxhauteur);
-    afficher_rectangle(maxlarge,maxhauteur,xbase,ybase);
+    printf(" entrez la largeur : ");
+    scanf(" %d",&large);
+    printf(" entrez la hauteur : ");
+    scanf(" %d",&hauteur);
+    afficher_rectangle(large,hauteur,xbase,ybase);
     choix=-1;
   }
 
