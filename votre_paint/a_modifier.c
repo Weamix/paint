@@ -13,7 +13,13 @@ void initialisation_fenetre(){
   for(int i=100;i<500;i++)
     afficher_point(i,i,0,0,0);
 
-  afficher_texte(420,350,"ceci n'est pas une ligne",0,0,0);
+  afficher_texte(420,350,"Appuyer sur la touche:",0,0,0);
+  afficher_texte(420,330,"5 pour un cercle",0,0,0);
+  afficher_texte(420,310,"8 pour tout effacer",0,0,0);
+  afficher_texte(420,290,"9 pour un rectangle",0,0,0);
+
+  afficher_rectangle(400,200,220,220);
+  afficher_cercle(80,320,320);
 }
 
 
