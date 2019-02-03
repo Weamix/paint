@@ -16,8 +16,10 @@ void initialisation_fenetre()
   afficher_texte(420,290,"5 pour un cercle",0,0,0);
   afficher_texte(420,260,"8 pour tout effacer",0,0,0);
   afficher_texte(420,230,"9 pour un rectangle",0,0,0);
-  afficher_rectangle(250,150,45,90,1);
-  afficher_cercle(90,450,300,0);
+  afficher_rectangle(250,150,45,90,0);
+  afficher_rectangle(75,50,100,270,1);
+  afficher_cercle(150,500,300,0);
+  afficher_cercle(50,500,530,1);
   afficher_droite(0,40);
 }
 
