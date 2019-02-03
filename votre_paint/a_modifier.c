@@ -8,18 +8,17 @@ char choix=-1;
 // que vous pouvez réappeler de nouveau pour réinitilisation.
 // Utile si vous voulez créer un menu ou une interface graphique...
 
-void initialisation_fenetre(){
+void initialisation_fenetre()
+{
   effacer();
-  for(int i=100;i<500;i++)
-    afficher_point(i,i,0,0,0);
-
   afficher_texte(420,350,"Appuyer sur la touche:",0,0,0);
-  afficher_texte(420,330,"5 pour un cercle",0,0,0);
-  afficher_texte(420,310,"8 pour tout effacer",0,0,0);
-  afficher_texte(420,290,"9 pour un rectangle",0,0,0);
-
-  afficher_rectangle(400,200,220,220);
-  afficher_cercle(80,320,320);
+  afficher_texte(420,320,"4 pour une droite",0,0,0);
+  afficher_texte(420,290,"5 pour un cercle",0,0,0);
+  afficher_texte(420,260,"8 pour tout effacer",0,0,0);
+  afficher_texte(420,230,"9 pour un rectangle",0,0,0);
+  afficher_rectangle(250,150,45,90,1);
+  afficher_cercle(90,450,300,0);
+  afficher_droite(0,40);
 }
 
 
@@ -55,30 +54,35 @@ void affichage()
   }
 
   if(choix=='3'){
-    afficher_point(350,275,0,0,0);
-    afficher_point(350,276,0,0,0);
-    afficher_point(351,275,0,0,0);
-    afficher_point(351,276,0,0,0);
+    afficher_point(150,75,0,0,0);
+    afficher_point(150,76,0,0,0);
+    afficher_point(151,75,0,0,0);
+    afficher_point(151,76,0,0,0);
     choix=-1;
   }
 
   if(choix=='4'){
-    afficher_point(350,475,0,0,0);
-    afficher_point(350,476,0,0,0);
-    afficher_point(351,475,0,0,0);
-    afficher_point(351,476,0,0,0);
+    int a,b;
+    printf("Vous avez ax+b l'equation d'une droite ");
+    printf("\n Entrez a : ");
+    scanf(" %d",&a);
+    printf("\n Entrez b : ");
+    scanf(" %d",&b);
+    afficher_droite(a,b);
     choix=-1;
   }
 
   if(choix=='5'){
-    int x_centre,y_centre,rayon;
+    int x_centre,y_centre,rayon,plein;
     printf("Entrez la coordonnées X du centre du cercle :\n");
     scanf(" %d",&x_centre);
     printf("Entrez la coordonnées Y du centre du cercle :\n");
     scanf(" %d",&y_centre);
     printf("Entrez la longueur du rayon :\n");
     scanf(" %d",&rayon);
-    afficher_cercle(rayon,x_centre,y_centre);
+    printf("Voulez vous avoir un rectangle plein (0/1) ? ");
+    scanf(" %d",&plein);
+    afficher_cercle(rayon,x_centre,y_centre,plein);
     choix=-1;
   }
 
@@ -102,7 +106,7 @@ void affichage()
     choix=-1;
   }
   if(choix=='9'){
-    int large,hauteur,xbase,ybase ;
+    int large,hauteur,xbase,ybase,plein ;
     printf(" entrez la coordonnée x de base : ");
     scanf(" %d",&xbase);
     printf(" entrez la coordonnée y de base : ");
@@ -111,7 +115,9 @@ void affichage()
     scanf(" %d",&large);
     printf(" entrez la hauteur : ");
     scanf(" %d",&hauteur);
-    afficher_rectangle(large,hauteur,xbase,ybase);
+    printf("Voulez vous avoir un rectangle plein (0/1) ? ");
+    scanf(" %d",&plein);
+    afficher_rectangle(large,hauteur,xbase,ybase,plein);
     choix=-1;
   }
 
