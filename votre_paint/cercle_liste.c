@@ -15,10 +15,10 @@ typedef struct _cercle   // on met un souligne car ce type ne servira qu'en inte
 fonction permettant de creer un cercle en passant le point au centre du cercle (x;y), le rayon et si le cercle est plein ou non.
 Par defaut, le cerlce ne connait pas son suivant donc on le met a NULL. Le type de retour est ptcercle (un pointeur sur un cercle)
 */
-ptrectangle creation_cercle(int nb1, int nb2, int nb3, int nb4)
+ptcercle creation_cercle(int nb1, int nb2, int nb3, int nb4)
 {    ptcercle nouveau;
-    nouveau=malloc(sizeof(tcercle));// on cre la structure d'un nouveau rectangle
-    // on remplit le rectangle
+    nouveau=malloc(sizeof(tcercle));// on cre la structure d'un nouveau cercle
+    // on remplit le cercle
 
     nouveau->x_centre=nb1; // ecriture equivalente a (*nouveau).x_centre = nb1;
     nouveau->y_centre=nb2;
