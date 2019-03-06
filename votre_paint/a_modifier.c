@@ -75,16 +75,48 @@ void affichage()
   }
 
   if(choix=='5'){
+
+    ptcercle sauvegarde = NULL; // par defaut le sauvegarde ne contient aucun cercle
+
+    char rep = 'o';
+    int nb1, nb2, nb3,nb4;
     int x_centre,y_centre,rayon,plein;
-    printf("Entrez la coordonnées X du centre du cercle :\n");
-    scanf(" %d",&x_centre);
-    printf("Entrez la coordonnées Y du centre du cercle :\n");
-    scanf(" %d",&y_centre);
-    printf("Entrez la longueur du rayon :\n");
-    scanf(" %d",&rayon);
-    printf("Voulez vous avoir un rectangle plein (0/1) ? ");
-    scanf(" %d",&plein);
-    afficher_cercle(rayon,x_centre,y_centre,plein);
+
+    while (rep == 'o')
+    {
+        printf("-------- creation d'un nouveau cercle -----------\n");
+        printf("Entrez la coordonnées X du centre du cercle : \n");
+        scanf("%d", &nb1);
+        printf("Entrez la coordonnées Y du centre du cercle :\n");
+        scanf("%d", &nb2);
+        printf("Entrez la longueur du rayon :\n");
+        scanf("%d", &nb3);
+        printf("plein ? (0 -> non , 1 -> oui ) : ");
+        scanf("%d", &nb4);
+
+        ptcercle nouveau_cercle = creation_cercle(nb1, nb2, nb3,nb4);
+
+        rayon=nb1;
+        x_centre=nb2;
+        y_centre=nb3;
+        plein=nb4;
+
+        afficher_cercle(rayon,x_centre,y_centre,plein);
+
+        printf("le cercle vient d'etre cree \n");
+
+        insertion(&sauvegarde, nouveau_cercle); // passage par adresse pour sauvegarde
+        
+        printf("Pas d'inquietude! Le(s) cercle(s) n'apparait qu'après avoir choisi non 'n' \n");
+        printf(" voulez vous ajouter un nouveau cercle? o/n: ");
+
+        scanf(" %c", &rep);
+    }
+
+    printf("Affichage des cercles du sauvegarde \n");
+
+    affichersauvegarde(sauvegarde);
+
     choix=-1;
   }
 
@@ -159,4 +191,37 @@ void clavier(unsigned char key, int x, int y){
     choix=key;
   else
     exit(0);
+}
+
+void insertion(ptcercle *sauvegarde, ptcercle cercle)
+{
+    // si le sauvegarde ne contient aucun cercle
+    if (*sauvegarde == NULL)
+    {
+        *sauvegarde = cercle;
+    }else // le sauvegarde contient au moins un cercle
+    {
+        ptcercle dernier_cercle = *sauvegarde;
+        while (dernier_cercle->suivant != NULL)
+        {
+            dernier_cercle = dernier_cercle->suivant;
+        }
+        dernier_cercle->suivant = cercle;
+    }
+}
+
+/**
+
+Procedure permettant d'afficher les cercles du sauvegarde passe en parametre
+*/
+void affichersauvegarde(ptcercle sauvegarde)
+{
+    ptcercle cercle = sauvegarde;
+    int i = 1;
+    while (cercle != NULL)
+    {
+        printf("cercle %d avec coordonées de centre x = %d ; y = %d  et rayon = %d et plein = %d \n", i, cercle->x_centre, cercle->y_centre, cercle->rayon, cercle->plein);
+        cercle = cercle->suivant;
+        i++;
+    }
 }
