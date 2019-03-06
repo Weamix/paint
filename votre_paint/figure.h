@@ -12,6 +12,39 @@
 // Mettre en place ici la SD pour les figures
 // Mettre en place ici la SD pour la (les) liste(s) chainée(s)
 
+/*************************************** Rectangle ******************************************/
+
+typedef struct _rectangle   // on met un soulign� car ce type ne servira qu'en interne
+    {
+        int hauteur;
+        int large;
+        int xbase;
+        int ybase;
+        int plein;
+        struct _rectangle *suivant; // chaine de liaison pour le suivant
+    } trectangle, *ptrectangle; // t pour le type pt pour le typo pointeur
+
+/**
+fonction permettant de creer un rectangle en passant le nombre de sieges et de fenetres en parametres.
+Par defaut, le rectangle ne connait pas son suivant donc on le met a NULL. Le type de retour est ptrectangle (un pointeur sur un rectangle)
+*/
+ptrectangle creation_rectangle_pt(int nb1, int nb2, int nb3, int nb4, int nb5)
+{
+    ptrectangle nouveau;
+    nouveau=malloc(sizeof(trectangle));// on cr�e la structure d'un nouveau rectangle
+    // on remplit le rectangle
+
+    nouveau->hauteur=nb1; // ecriture equivalente a (*nouveau).hauteurs = nb1;
+    nouveau->large=nb2;
+    nouveau->xbase=nb3;
+    nouveau->ybase=nb4;
+    nouveau->plein=nb5;
+
+    nouveau->suivant=NULL;// rien derri�re le rectangle
+    return nouveau;
+
+}
+
 /*************************************** Cercle ******************************************/
 
 typedef struct _cercle   // on met un souligne car ce type ne servira qu'en interne
