@@ -223,7 +223,7 @@ void clavier(unsigned char key, int x, int y){
     exit(0);
 }
 
-/***************************************** Droite *********************************************/
+/***************************************** Cercle *********************************************/
 
 void insertion(ptcercle *sauvegarde, ptcercle cercle)
 {
