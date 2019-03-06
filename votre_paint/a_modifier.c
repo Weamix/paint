@@ -4,8 +4,7 @@
 
 char choix=-1;
 
-// Procédure appelée lors de la création de la fenêtre
-// que vous pouvez réappeler de nouveau pour réinitilisation.
+// Procédure appelée lors de la création de la fenêtre que vous pouvez réappeler de nouveau pour réinitilisation.
 // Utile si vous voulez créer un menu ou une interface graphique...
 
 void initialisation_fenetre()
@@ -27,20 +26,16 @@ void initialisation_fenetre()
   afficher_droite(0,40);
 }
 
-// Cette procédure est appelée lorsqu'aucun
-// événement clavier/souris n'est détecté
-// donc quasiment en continu.
+// Cette procédure est appelée lorsqu'aucun événement clavier/souris n'est détecté donc quasiment en continu.
 // C'est cette procédure qui doit gèrer l'affichage.
 
 void affichage()
 {
   // L'affichage ne peut se faire que ici !
-  // Utilisez des variables globales si vous avez besoin de faire communiquer
-  // cette procédure et les autres.
+  // Utilisez des variables globales si vous avez besoin de faire communiquer cette procédure et les autres.
 
-  // On affiche 4 points à chaque fois pour que ce soit plus
-  // visible qu'un seul pixel - juste plus de confort
-  // pour ce programme de test.
+  // On affiche 4 points à chaque fois pour que ce soit plus visible qu'un seul pixel.
+  // Juste plus de confort pour ce programme de test.
   
   if(choix=='1')
     {
@@ -74,7 +69,7 @@ void affichage()
 
   if(choix=='4')
     {
-      ptdroite liste_de_droite = NULL; // Par defaut la liste ne contient aucune droite
+      ptdroite liste_de_droite = NULL; // Par defaut la liste ne contient aucune droite.
 
       char rep = 'o';
 
@@ -97,12 +92,12 @@ void affichage()
 
             afficher_droite(a,b);
 
-            printf("La droite vient est fait \n");
+            printf("La droite vient est fait. \n");
 
-            insertion(&liste_de_droite, nouvelle_droite); // Passage par adresse pour la droite
+            insertion(&liste_de_droite, nouvelle_droite); // Passage par adresse pour la droite.
 
-            printf(" Il ne faut pas s'inquieter, la droite va etre faite une fois avoir dit non. \n ");
-            printf(" Voulez vous ajouter une nouvelle droite ? o/n : ");
+            printf("Il ne faut pas s'inquieter, la droite va etre faite une fois avoir dit non. \n ");
+            printf("Voulez vous ajouter une nouvelle droite ? o/n : ");
             scanf(" %c", &rep);
         }
 
@@ -115,7 +110,7 @@ void affichage()
 
   if(choix=='5')
     {
-      ptcercle sauvegarde = NULL; // par defaut le sauvegarde ne contient aucun cercle
+      ptcercle sauvegarde = NULL; // Par defaut le sauvegarde ne contient aucun cercle.
 
       char rep = 'o';
       int nb1, nb2, nb3,nb4;
@@ -123,7 +118,7 @@ void affichage()
 
       while (rep == 'o')
         {
-            printf("-------- creation d'un nouveau cercle -----------\n");
+            printf("-------- Creation d'un nouveau cercle : -----------\n");
         
             printf("Entrez la coordonnées X du centre du cercle : \n");
             scanf("%d", &nb1);
@@ -146,17 +141,16 @@ void affichage()
 
             afficher_cercle(rayon,x_centre,y_centre,plein);
 
-            printf("le cercle vient d'etre cree \n");
+            printf("Le cercle est fait. \n");
 
-            insertion(&sauvegarde, nouveau_cercle); // passage par adresse pour sauvegarde
+            insertion(&sauvegarde, nouveau_cercle); // Passage par adresse pour sauvegarde.
 
             printf("Pas d'inquietude! Le(s) cercle(s) n'apparait qu'après avoir choisi non 'n' \n");
-            printf(" voulez vous ajouter un nouveau cercle? o/n: ");
-
+            printf("Voulez vous ajouter un nouveau cercle ? o/n: ");
             scanf(" %c", &rep);
         }
 
-      printf("Affichage des cercles du sauvegarde \n");
+      printf("Affichage des cercles du sauvegarde : \n");
 
       affichersauvegarde(sauvegarde);
 
@@ -194,50 +188,51 @@ void affichage()
   
   if(choix=='9')
     {
-       ptrectangle sauvegarde = NULL; // par defaut le sauvegarde ne contient aucun rectangle
+       ptrectangle sauvegarde = NULL; // Par defaut le sauvegarde ne contient aucun rectangle.
 
       char rep = 'o';
       int nb1, nb2, nb3, nb4, nb5;
       int large,hauteur,xbase,ybase,plein ;
 
       while (rep == 'o')
-      {
-          printf("-------- creation d'un nouveau rectangle -----------\n");
+        {
+            printf("-------- Creation d'un nouveau rectangle. -----------\n");
 
-          printf("hauteur = ");
-          scanf("%d", &nb1);
+            printf("hauteur = ");
+            scanf("%d", &nb1);
 
-          printf("large = ");
-          scanf("%d", &nb2);
+            printf("large = ");
+            scanf("%d", &nb2);
 
-          printf("x base = ");
-          scanf("%d", &nb3);
+            printf("x base = ");
+            scanf("%d", &nb3);
 
-          printf("y base = ");
-          scanf("%d", &nb4);
+            printf("y base = ");
+            scanf("%d", &nb4);
 
-          printf("plein ? (0 -> non , 1 -> oui ) : ");
-          scanf("%d", &nb5);
+            printf("plein ? (0 -> non , 1 -> oui ) : ");
+            scanf("%d", &nb5);
 
-          ptrectangle nouveau_rectangle = creation_rectangle_pt(nb1, nb2, nb3, nb4, nb5);
+            ptrectangle nouveau_rectangle = creation_rectangle_pt(nb1, nb2, nb3, nb4, nb5);
 
-          hauteur = nb1;
-          large = nb2;
-          xbase = nb3;
-          ybase = nb4;
-          plein = nb5;
+            hauteur = nb1;
+            large = nb2;
+            xbase = nb3;
+            ybase = nb4;
+            plein = nb5;
 
-          afficher_rectangle(large,hauteur,xbase,ybase,plein);
+            afficher_rectangle(large,hauteur,xbase,ybase,plein);
 
-          printf("Le rectangle est fait. \n");
+            printf("Le rectangle est fait. \n");
 
-          insertion(&sauvegarde, nouveau_rectangle); // passage par adresse pour sauvegarde
+            insertion(&sauvegarde, nouveau_rectangle); // Passage par adresse pour sauvegarde.
 
-          printf(" voulez vous ajouter un nouveau rectangle? o/n: ");
-          scanf(" %c", &rep);
-      }
+            printf("Il ne faut pas s'inquieter, le(s) rectangle(s) va etre faite une fois avoir dit non. \n ");
+            printf("Voulez vous ajouter un nouveau rectangle ? o/n: ");
+            scanf(" %c", &rep);
+        }
       
-      printf("Affichage des rectangles du sauvegarde \n");
+      printf("Affichage des rectangles du sauvegarde : \n");
 
       affichersauvegarde(sauvegarde);
     
