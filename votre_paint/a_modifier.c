@@ -194,72 +194,56 @@ void affichage()
   
   if(choix=='9')
     {
+       ptrectangle sauvegarde = NULL; // par defaut le sauvegarde ne contient aucun rectangle
+
+      char rep = 'o';
+      int nb1, nb2, nb3, nb4, nb5;
       int large,hauteur,xbase,ybase,plein ;
-    
-      printf(" entrez la coordonnée x de base : ");
-      scanf(" %d",&xbase);
-    
-      printf(" entrez la coordonnée y de base : ");
-      scanf(" %d",&ybase);
-    
-      printf(" entrez la largeur : ");
-      scanf(" %d",&large);
-    
-      printf(" entrez la hauteur : ");
-      scanf(" %d",&hauteur);
-    
-      printf("Voulez vous avoir un rectangle plein (0/1) ? ");
-      scanf(" %d",&plein);
-    
-      afficher_rectangle(large,hauteur,xbase,ybase,plein);
+
+      while (rep == 'o')
+      {
+          printf("-------- creation d'un nouveau rectangle -----------\n");
+
+          printf("hauteur = ");
+          scanf("%d", &nb1);
+
+          printf("large = ");
+          scanf("%d", &nb2);
+
+          printf("x base = ");
+          scanf("%d", &nb3);
+
+          printf("y base = ");
+          scanf("%d", &nb4);
+
+          printf("plein ? (0 -> non , 1 -> oui ) : ");
+          scanf("%d", &nb5);
+
+          ptrectangle nouveau_rectangle = creation_rectangle_pt(nb1, nb2, nb3, nb4, nb5);
+
+          hauteur = nb1;
+          large = nb2;
+          xbase = nb3;
+          ybase = nb4;
+          plein = nb5;
+
+          afficher_rectangle(large,hauteur,xbase,ybase,plein);
+
+          printf("Le rectangle est fait. \n");
+
+          insertion(&sauvegarde, nouveau_rectangle); // passage par adresse pour sauvegarde
+
+          printf(" voulez vous ajouter un nouveau rectangle? o/n: ");
+          scanf(" %c", &rep);
+      }
+      
+      printf("Affichage des rectangles du sauvegarde \n");
+
+      affichersauvegarde(sauvegarde);
     
       choix=-1;
     }
-  
-  /*************************************** A ADAPTER ************************************************************************************************/
-  
-  ptrectangle sauvegarde = NULL; // par defaut le sauvegarde ne contient aucun rectangle
-
-    char rep = 'o';
-    int nb1, nb2, nb3, nb4, nb5;
-
-
-    while (rep == 'o')
-    {
-        printf("-------- creation d'un nouveau rectangle -----------\n");
-        printf("hauteur = ");
-        scanf("%d", &nb1);
-        printf("large = ");
-        scanf("%d", &nb2);
-        printf("x base = ");
-        scanf("%d", &nb3);
-        printf("y base = ");
-        scanf("%d", &nb4);
-        printf("plein ? (0 -> non , 1 -> oui ) : ");
-        scanf("%d", &nb5);
-
-
-        ptrectangle nouveau_rectangle = creation_rectangle_pt(nb1, nb2, nb3, nb4, nb5);
-
-        printf("le rectangle vient d'etre cree \n");
-
-        insertion(&sauvegarde, nouveau_rectangle); // passage par adresse pour sauvegarde
-
-        printf(" voulez vous ajouter un nouveau rectangle? o/n: ");
-        scanf(" %c", &rep);
-    }
-
-    printf("Affichage des rectangles du sauvegarde \n");
-
-    affichersauvegarde(sauvegarde);
-    return 0;
 }
-
-/************************************** FIN A ADAPTER *******************************************************************************************/
-
-}
-
-
 
 void clic_gauche(int x, int y)
   {
@@ -304,38 +288,38 @@ void clavier(unsigned char key, int x, int y)
 /***************************************** Cercle *********************************************/
 
 void insertion(ptcercle *sauvegarde, ptcercle cercle)
-{
-    // si le sauvegarde ne contient aucun cercle
-    if (*sauvegarde == NULL)
-      {
-          *sauvegarde = cercle;
-      }
-      else // le sauvegarde contient au moins un cercle
+  {
+      // Si le sauvegarde ne contient aucun cercle
+      if (*sauvegarde == NULL)
         {
-            ptcercle dernier_cercle = *sauvegarde;
-            while (dernier_cercle->suivant != NULL)
-              {
-                  dernier_cercle = dernier_cercle->suivant;
-              }
-            dernier_cercle->suivant = cercle;
+            *sauvegarde = cercle;
         }
-}
+        else // La sauvegarde contient au moins un cercle
+          {
+              ptcercle dernier_cercle = *sauvegarde;
+              while (dernier_cercle->suivant != NULL)
+                {
+                    dernier_cercle = dernier_cercle->suivant;
+                }
+              dernier_cercle->suivant = cercle;
+          }
+  }
 
-/**
-
-Procedure permettant d'afficher les cercles du sauvegarde passe en parametre
-*/
+// Procedure permettant d'afficher les cercles du sauvegarde passe en parametre
 void affichersauvegarde(ptcercle sauvegarde)
-{
-    ptcercle cercle = sauvegarde;
-    int i = 1;
-    while (cercle != NULL)
-    {
-        printf("cercle %d avec coordonées de centre x = %d ; y = %d  et rayon = %d et plein = %d \n", i, cercle->x_centre, cercle->y_centre, cercle->rayon, cercle->plein);
-        cercle = cercle->suivant;
-        i++;
-    }
-}
+  {
+      ptcercle cercle = sauvegarde;
+  
+      int i = 1;
+  
+      while (cercle != NULL)
+        {
+            printf("cercle %d avec coordonées de centre x = %d ; y = %d  et rayon = %d et plein = %d \n", i, cercle->x_centre, cercle->y_centre, cercle->rayon, cercle->plein);
+            cercle = cercle->suivant;
+        
+            i++;
+        }
+  }
 
 /***************************************** Droite *********************************************/
 
@@ -348,35 +332,31 @@ Il faut noter ici qu'on fait une insersion en queue de liste, c-à-d qu'on cherc
 */
 
 void insertion(ptdroite *liste_de_droite, ptdroite droite)
-{
-    // Si la liste_de_droite ne contient aucune droite !
-    if (*liste_de_droite == NULL)
-        {
-            *liste_de_droite = droite;
-        }else // La liste_de_droite contient au moins une droite.
+  {
+      // Si la liste_de_droite ne contient aucune droite !
+      if (*liste_de_droite == NULL)
+          {
+              *liste_de_droite = droite;
+          }
+          else // La liste_de_droite contient au moins une droite.
             {
                 ptdroite derniere_droite = *liste_de_droite;
                 while (derniere_droite->suivant != NULL)
-                    {
-                        derniere_droite = derniere_droite->suivant;
-                    }
+                  {
+                      derniere_droite = derniere_droite->suivant;
+                  }
                 derniere_droite->suivant = droite;
             }
-}
+  }
 
-/**
-
-Procedure permettant d'afficher les droites de la liste_de_droite passant en paramètre.
-
-*/
-
+// Procedure permettant d'afficher les droites de la liste_de_droite passant en paramètre.
 void afficherListe(ptdroite liste_de_droite)
-{
-    ptdroite droite = liste_de_droite;
+  {
+      ptdroite droite = liste_de_droite;
 
-    int i = 1;
+      int i = 1;
 
-    while (droite != NULL)
+      while (droite != NULL)
         {
             printf("Droite %d avec coeffDir = %d et ordOrigine = %d \n", i, droite->coeffDir, droite->ordOrigine);
 
@@ -384,39 +364,40 @@ void afficherListe(ptdroite liste_de_droite)
 
             i++;
         }
-}
+  }
 
 /***************************************** Rectangle *********************************************/
 
 void insertion(ptrectangle *sauvegarde, ptrectangle rectangle)
-{
-    // si le sauvegarde ne contient aucun rectangle
-    if (*sauvegarde == NULL)
-    {
-        *sauvegarde = rectangle;
-    }else // le sauvegarde contient au moins un rectangle
-    {
-        ptrectangle dernier_rectangle = *sauvegarde;
-        while (dernier_rectangle->suivant != NULL)
+  {
+      // Si le sauvegarde ne contient aucun rectangle
+      if (*sauvegarde == NULL)
         {
-            dernier_rectangle = dernier_rectangle->suivant;
+            *sauvegarde = rectangle;
         }
-        dernier_rectangle->suivant = rectangle;
-    }
-}
+        else // La sauvegarde contient au moins un rectangle
+          {
+              ptrectangle dernier_rectangle = *sauvegarde;
+              while (dernier_rectangle->suivant != NULL)
+                {
+                    dernier_rectangle = dernier_rectangle->suivant;
+                }
+              dernier_rectangle->suivant = rectangle;
+          }
+  }
 
-/**
-
-Procedure permettant d'afficher les rectangles du sauvegarde passe en parametre
-*/
+//Procedure permettant d'afficher les rectangles du sauvegarde passe en parametre
 void affichersauvegarde(ptrectangle sauvegarde)
-{
-    ptrectangle rectangle = sauvegarde;
-    int i = 1;
-    while (rectangle != NULL)
-    {
-        printf("rectangle %d avec hauteur = %d , large = %d , x base = %d , y base = %d et plein = %d \n", i, rectangle->large, rectangle->hauteur,rectangle->xbase,rectangle->ybase, rectangle->plein);
-        rectangle = rectangle->suivant;
-        i++;
-    }
-}
+  {
+      ptrectangle rectangle = sauvegarde;
+  
+      int i = 1;
+  
+      while (rectangle != NULL)
+        {
+            printf("rectangle %d avec hauteur = %d , large = %d , x base = %d , y base = %d et plein = %d \n", i, rectangle->large, rectangle->hauteur,rectangle->xbase,rectangle->ybase, rectangle->plein);
+            rectangle = rectangle->suivant;
+        
+            i++;
+        }
+  }
