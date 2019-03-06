@@ -188,7 +188,7 @@ void affichage()
   
   if(choix=='9')
     {
-       ptrectangle sauvegarde = NULL; // Par defaut le sauvegarde ne contient aucun rectangle.
+      ptrectangle sauvegarde = NULL; // Par defaut le sauvegarde ne contient aucun rectangle.
 
       char rep = 'o';
       int nb1, nb2, nb3, nb4, nb5;
@@ -242,10 +242,9 @@ void affichage()
 
 void clic_gauche(int x, int y)
   {
-    // Code exécuté lors d'un clic gauche
+    // Code exécuté lors d'un clic gauche.
     // Attention ! Pas de dessin dans cette fonction/procédure.
-    // Utilisez des variables globales si vous avez besoin de faire communiquer
-    // cette procédure et celles du dessous.
+    // Utilisez des variables globales si vous avez besoin de faire communiquer cette procédure et celles du dessous.
 
     printf("Clic gauche en %d %d\n",x,y);
   }
@@ -253,25 +252,22 @@ void clic_gauche(int x, int y)
 
 void clic_droit(int x, int y)
   {
-    // Code exécuté lors d'un clic droit
-    // Attention ! Pas de dessin dans cette fonction/procédure
-    // Utilisez des variables globales si vous avez besoin de faire communiquer
-    // cette procédure et celles du dessous.
+    // Code exécuté lors d'un clic droit.
+    // Attention ! Pas de dessin dans cette fonction/procédure.
+    // Utilisez des variables globales si vous avez besoin de faire communiquer cette procédure et celles du dessous.
 
     printf("Clic droit en %d %d\n",x,y);
   }
 
 void clavier(unsigned char key, int x, int y)
   {
-    // Code exécuté lors d'un
-    // Attention ! Pas de dessin dans cette fonction/procédure
-    // Utilisez des variables globales si vous avez besoin de faire communiquer
-    // cette procédure et celles du dessous.
+    // Code exécuté lors d'une opération au clavier.
+    // Attention ! Pas de dessin dans cette fonction/procédure.
+    // Utilisez des variables globales si vous avez besoin de faire communiquer cette procédure et celles du dessous.
 
     printf("Appui sur la touche %c du clavier lorsque la souris est en %d %d\n",key,x,y);
 
-    // Si la touche appuyée est un chiffre entre 1 et 6,
-    // la case correspondante dans le tableau choix est mise à vrai.
+    // Si la touche appuyée est un chiffre entre 1 et 6, la case correspondante dans le tableau choix est mise à vrai.
     // Si une autre touche est appuyée, le programme se ferme.
 
     if(key>='1' && key<='9')
@@ -284,12 +280,12 @@ void clavier(unsigned char key, int x, int y)
 
 void insertion(ptcercle *sauvegarde, ptcercle cercle)
   {
-      // Si le sauvegarde ne contient aucun cercle
+      // Si le sauvegarde ne contient aucun cercle.
       if (*sauvegarde == NULL)
         {
             *sauvegarde = cercle;
         }
-        else // La sauvegarde contient au moins un cercle
+        else // La sauvegarde contient au moins un cercle.
           {
               ptcercle dernier_cercle = *sauvegarde;
               while (dernier_cercle->suivant != NULL)
@@ -300,7 +296,7 @@ void insertion(ptcercle *sauvegarde, ptcercle cercle)
           }
   }
 
-// Procedure permettant d'afficher les cercles du sauvegarde passe en parametre
+// Procedure permettant d'afficher les cercles de la sauvegarde passant en parametre.
 void affichersauvegarde(ptcercle sauvegarde)
   {
       ptcercle cercle = sauvegarde;
@@ -318,10 +314,10 @@ void affichersauvegarde(ptcercle sauvegarde)
 
 /***************************************** Droite *********************************************/
 
-/**
+/*
 
 Cette fonction permet d'inserer une droite dans une liste_de_droite. La liste_de_droite est de type ptdroite et le passage par adresse de ce parametre
-permet de conserve les changements qu'il subit (ajout d'une nouvelle droite). Le second parametre est la droite qu'on desire inserer.
+permet de conserve les changements qu'elle subit (ajout d'une nouvelle droite). Le second parametre est la droite qu'on desire inserer.
 Il faut noter ici qu'on fait une insersion en queue de liste, c-à-d qu'on cherche la dernière droite d'une liste_de_droite et on insere la nouvelle droite.
 
 */
@@ -365,12 +361,12 @@ void afficherListe(ptdroite liste_de_droite)
 
 void insertion(ptrectangle *sauvegarde, ptrectangle rectangle)
   {
-      // Si le sauvegarde ne contient aucun rectangle
+      // Si le sauvegarde ne contient aucun rectangle.
       if (*sauvegarde == NULL)
         {
             *sauvegarde = rectangle;
         }
-        else // La sauvegarde contient au moins un rectangle
+        else // La sauvegarde contient au moins un rectangle.
           {
               ptrectangle dernier_rectangle = *sauvegarde;
               while (dernier_rectangle->suivant != NULL)
@@ -381,7 +377,7 @@ void insertion(ptrectangle *sauvegarde, ptrectangle rectangle)
           }
   }
 
-//Procedure permettant d'afficher les rectangles du sauvegarde passe en parametre
+// Procedure permettant d'afficher les rectangles du sauvegarde passe en parametre.
 void affichersauvegarde(ptrectangle sauvegarde)
   {
       ptrectangle rectangle = sauvegarde;
