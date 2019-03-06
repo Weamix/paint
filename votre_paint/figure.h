@@ -81,6 +81,33 @@ ptdroite creation_droite(int d1, int d2)
 
 }
 
+/*************************************** Point ******************************************/
+
+typedef struct _point   // on met un souligne car ce type ne servira qu'en interne
+    {
+        int x_position;
+        int y_position;
+        struct _point *suivant; // chaine de liaison pour le suivant
+    } tpoint, *ptpoint; // t pour le type pt pour le typo pointeur
+
+/**
+fonction permettant de creer un point en passant le nombre de sieges et de fenetres en parametres.
+Par defaut, le point ne connait pas son suivant donc on le met a NULL. Le type de retour est ptpoint (un pointeur sur un point)
+*/
+ptpoint creation_point(int nb1, int nb2)
+{
+    ptpoint nouveau;
+    nouveau=malloc(sizeof(tpoint));// on cre la structure d'un nouveau point
+    // on remplit le point
+
+    nouveau->x_position=nb1; // ecriture equivalente a (*nouveau).longueurs = nb1;
+    nouveau->y_position=nb2;
+
+    nouveau->suivant=NULL;// rien derrire le point
+    return nouveau;
+
+}
+
 void afficher_texte(int x, int y, char *string, double r, double v, double b);
 
 void afficher_point(int x, int y, double r, double v, double b);
