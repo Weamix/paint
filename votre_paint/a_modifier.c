@@ -64,13 +64,43 @@ void affichage()
   }
 
   if(choix=='4'){
-    int a,b;
-    printf("Vous avez ax+b l'equation d'une droite ");
-    printf("\n Entrez a : ");
-    scanf(" %d",&a);
-    printf("\n Entrez b : ");
-    scanf(" %d",&b);
-    afficher_droite(a,b);
+
+    ptdroite liste_de_droite = NULL; // Par defaut la liste ne contient aucune droite
+
+    char rep = 'o';
+
+    int d1, d2, a, b;
+
+
+    while (rep == 'o')
+    {
+        printf("-------- Creation d'une nouvelle droite : -----------\n");
+        printf("coeffDir = ");
+        scanf("%d", &d1);
+        printf("ordOrigine = ");
+        scanf("%d", &d2);
+
+        ptdroite nouvelle_droite = creation_droite(d1, d2);
+
+        a = d1 ;
+
+        b = d2 ;
+
+        afficher_droite(a,b);
+
+        printf("La droite vient est fait \n");
+
+        insertion(&liste_de_droite, nouvelle_droite); // Passage par adresse pour la droite
+
+        printf(" Il ne faut pas s'inquieter, la droite va etre faite une fois avoir dit non. \n ");
+        printf(" Voulez vous ajouter une nouvelle droite ? o/n : ");
+        scanf(" %c", &rep);
+    }
+
+    printf("Affichage des droites de la liste \n");
+
+    afficherListe(liste_de_droite);
+
     choix=-1;
   }
 
@@ -193,6 +223,8 @@ void clavier(unsigned char key, int x, int y){
     exit(0);
 }
 
+/***************************************** Droite *********************************************/
+
 void insertion(ptcercle *sauvegarde, ptcercle cercle)
 {
     // si le sauvegarde ne contient aucun cercle
@@ -224,4 +256,53 @@ void affichersauvegarde(ptcercle sauvegarde)
         cercle = cercle->suivant;
         i++;
     }
+}
+
+/***************************************** Droite *********************************************/
+
+/**
+
+Cette fonction permet d'inserer une droite dans une liste_de_droite. La liste_de_droite est de type ptdroite et le passage par adresse de ce parametre
+permet de conserve les changements qu'il subit (ajout d'une nouvelle droite). Le second parametre est la droite qu'on desire inserer.
+Il faut noter ici qu'on fait une insersion en queue de liste, c-à-d qu'on cherche la dernière droite d'une liste_de_droite et on insere la nouvelle droite.
+
+*/
+
+void insertion(ptdroite *liste_de_droite, ptdroite droite)
+{
+    // Si la liste_de_droite ne contient aucune droite !
+    if (*liste_de_droite == NULL)
+        {
+            *liste_de_droite = droite;
+        }else // La liste_de_droite contient au moins une droite.
+            {
+                ptdroite derniere_droite = *liste_de_droite;
+                while (derniere_droite->suivant != NULL)
+                    {
+                        derniere_droite = derniere_droite->suivant;
+                    }
+                derniere_droite->suivant = droite;
+            }
+}
+
+/**
+
+Procedure permettant d'afficher les droites de la liste_de_droite passant en paramètre.
+
+*/
+
+void afficherListe(ptdroite liste_de_droite)
+{
+    ptdroite droite = liste_de_droite;
+
+    int i = 1;
+
+    while (droite != NULL)
+        {
+            printf("Droite %d avec coeffDir = %d et ordOrigine = %d \n", i, droite->coeffDir, droite->ordOrigine);
+
+            droite = droite->suivant;
+
+            i++;
+        }
 }
