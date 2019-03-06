@@ -8,7 +8,7 @@ char choix=-1;
 // Utile si vous voulez créer un menu ou une interface graphique...
 
 void initialisation_fenetre()
-{
+ {
   effacer();
   
   afficher_texte(420,350,"Appuyer sur la touche:",0,0,0);
@@ -24,13 +24,13 @@ void initialisation_fenetre()
   afficher_cercle(50,500,530,1);
   
   afficher_droite(0,40);
-}
+ }
 
 // Cette procédure est appelée lorsqu'aucun événement clavier/souris n'est détecté donc quasiment en continu.
 // C'est cette procédure qui doit gèrer l'affichage.
 
 void affichage()
-{
+ {
   // L'affichage ne peut se faire que ici !
   // Utilisez des variables globales si vous avez besoin de faire communiquer cette procédure et les autres.
 
@@ -238,7 +238,7 @@ void affichage()
     
       choix=-1;
     }
-}
+ }
 
 void clic_gauche(int x, int y)
   {
