@@ -12,6 +12,8 @@
 // Mettre en place ici la SD pour les figures
 // Mettre en place ici la SD pour la (les) liste(s) chainée(s)
 
+/*************************************** Cercle ******************************************/
+
 typedef struct _cercle   // on met un souligne car ce type ne servira qu'en interne
     {
         int x_centre;
@@ -36,6 +38,45 @@ ptcercle creation_cercle(int nb1, int nb2, int nb3, int nb4)
     nouveau->plein=nb4;
 
     nouveau->suivant=NULL;// rien derriere le cercle
+    return nouveau;
+
+}
+
+/*************************************** Droite ******************************************/
+
+
+typedef struct _droite   // On met un souligné car ce type ne servira qu'en interne !!
+    {
+
+        int coeffDir;
+
+        int ordOrigine;
+
+        struct _droite *suivant; // Chaine de liaison pour le suivant.
+
+    }tdroite, *ptdroite; // "t" pour le type "pt" pour le type pointeur.
+
+
+/**
+
+Fonction permettant de réaliser une droite en passant le coeffDir et ordOrigine en paramètres.
+Par defaut, la droite ne connait pas le suivant donc on la met a NULL. Le type de retour est ptdroite (un pointeur sur une droite) !
+
+*/
+
+ptdroite creation_droite(int d1, int d2)
+{
+
+    ptdroite nouveau;
+
+    nouveau=malloc(sizeof(tdroite));  // On crée la structure d'une nouvelle droite.
+
+    nouveau->coeffDir=d1;
+
+    nouveau->ordOrigine=d2;  // On remplit la droite !
+
+    nouveau->suivant=NULL;  // Rien derriére la droite !
+
     return nouveau;
 
 }
