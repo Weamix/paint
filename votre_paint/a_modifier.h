@@ -10,11 +10,14 @@ void affichage();
 void clic_gauche(int x, int y);
 void clic_droit(int x, int y);
 void clavier(unsigned char key, int x, int y);
-void insertion_cer(ptcercle *sauvegarde, ptcercle cercle);
-void afficher_cer(ptcercle sauvegarde);
+
+void insertion_cer(ptcercle *sauvegarde_cer, ptcercle cercle);
+void afficher_sauv_cer(ptcercle sauvegarde_cer);
+
 void insertion_dr(ptdroite *liste_de_droite, ptdroite droite);
 void afficherListe(ptdroite liste_de_droite);
-void insertion_rect(ptrectangle *sauvegarde, ptrectangle rectangle);
-void afficher_ret(ptrectangle sauvegarde);
+
+void insertion_rect(ptrectangle *sauvegarde_rect, ptrectangle rectangle);
+void afficher_sauv_rect(ptrectangle sauvegarde_rect);
 
 #endif
