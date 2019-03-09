@@ -69,7 +69,7 @@ void affichage()
 
   if(choix=='4')
     {
-      ptdroite liste_de_droite = NULL; // Par defaut la liste ne contient aucune droite.
+      ptdroite liste_de_droite = NULL; // Par defaut la liste_de_droite ne contient aucune droite.
 
       char rep = 'o';
 
@@ -92,16 +92,16 @@ void affichage()
 
             afficher_droite(a,b);
 
-            printf("La droite vient est fait. \n");
+            printf("La droite est faite. \n");
 
-            insertion(&liste_de_droite, nouvelle_droite); // Passage par adresse pour la droite.
+            insertion_dr(&liste_de_droite, nouvelle_droite); // Passage par adresse pour la liste_de_droite.
 
-            printf("Il ne faut pas s'inquieter, la droite va etre faite une fois avoir dit non. \n ");
+            printf("Il ne faut pas s'inquieter, la droite va etre faite une fois avoir dit non 'n'. \n ");
             printf("Voulez vous ajouter une nouvelle droite ? o/n : ");
             scanf(" %c", &rep);
         }
 
-      printf("Affichage des droites de la liste \n");
+      printf("Affichage des droites de la liste_de_droite : \n");
 
       afficherListe(liste_de_droite);
 
@@ -110,7 +110,7 @@ void affichage()
 
   if(choix=='5')
     {
-      ptcercle sauvegarde = NULL; // Par defaut le sauvegarde ne contient aucun cercle.
+      ptcercle sauvegarde_cer = NULL; // Par defaut le sauvegarde_cer ne contient aucun cercle.
 
       char rep = 'o';
       int nb1, nb2, nb3,nb4;
@@ -143,16 +143,16 @@ void affichage()
 
             printf("Le cercle est fait. \n");
 
-            insertion(&sauvegarde, nouveau_cercle); // Passage par adresse pour sauvegarde.
+            insertion_cer(&sauvegarde_cer, nouveau_cercle); // Passage par adresse pour sauvegarde_cer.
 
-            printf("Pas d'inquietude! Le(s) cercle(s) n'apparait qu'après avoir choisi non 'n' \n");
+            printf("Pas d'inquietude ! Le(s) cercle(s) n'apparait qu'après avoir choisi non 'n'. \n");
             printf("Voulez vous ajouter un nouveau cercle ? o/n: ");
             scanf(" %c", &rep);
         }
 
-      printf("Affichage des cercles du sauvegarde : \n");
+      printf("Affichage des cercles du sauvegarde_cer : \n");
 
-      affichersauvegarde(sauvegarde);
+      afficher_sauv_cer(sauvegarde_cer);
 
       choix=-1;
     }
@@ -188,7 +188,7 @@ void affichage()
 
   if(choix=='9')
     {
-      ptrectangle sauvegarde = NULL; // Par defaut le sauvegarde ne contient aucun rectangle.
+      ptrectangle sauvegarde_rect = NULL; // Par defaut le sauvegarde_rect ne contient aucun rectangle.
 
       char rep = 'o';
       int nb1, nb2, nb3, nb4, nb5;
@@ -225,16 +225,16 @@ void affichage()
 
             printf("Le rectangle est fait. \n");
 
-            insertion(&sauvegarde, nouveau_rectangle); // Passage par adresse pour sauvegarde.
+            insertion_rect(&sauvegarde_rect, nouveau_rectangle); // Passage par adresse pour sauvegarde_rect.
 
-            printf("Il ne faut pas s'inquieter, le(s) rectangle(s) va etre faite une fois avoir dit non. \n ");
+            printf("Il ne faut pas s'inquieter, le(s) rectangle(s) va etre faite une fois avoir dit non 'n'. \n ");
             printf("Voulez vous ajouter un nouveau rectangle ? o/n: ");
             scanf(" %c", &rep);
         }
 
-      printf("Affichage des rectangles du sauvegarde : \n");
+      printf("Affichage des rectangles du sauvegarde_rect : \n");
 
-      affichersauvegarde(sauvegarde);
+      afficher_sauv_rect(sauvegarde_rect);
 
       choix=-1;
     }
@@ -278,16 +278,16 @@ void clavier(unsigned char key, int x, int y)
 
 /***************************************** Cercle *********************************************/
 
-void insertion_cer(ptcercle *sauvegarde, ptcercle cercle)
+void insertion_cer(ptcercle *sauvegarde_cer, ptcercle cercle)
   {
-      // Si le sauvegarde ne contient aucun cercle.
-      if (*sauvegarde == NULL)
+      // Si le sauvegarde_cer ne contient aucun cercle.
+      if (*sauvegarde_cer == NULL)
         {
-            *sauvegarde = cercle;
+            *sauvegarde_cer = cercle;
         }
-        else // La sauvegarde contient au moins un cercle.
+        else // La sauvegarde_cer contient au moins un cercle.
           {
-              ptcercle dernier_cercle = *sauvegarde;
+              ptcercle dernier_cercle = *sauvegarde_cer;
               while (dernier_cercle->suivant != NULL)
                 {
                     dernier_cercle = dernier_cercle->suivant;
@@ -296,10 +296,10 @@ void insertion_cer(ptcercle *sauvegarde, ptcercle cercle)
           }
   }
 
-// Procedure permettant d'afficher les cercles de la sauvegarde passant en parametre.
-void afficher_cer(ptcercle sauvegarde)
+// Procedure permettant d'afficher les cercles de la sauvegarde_cer passant en parametre.
+void afficher_sauv_cer(ptcercle sauvegarde_cer)
   {
-      ptcercle cercle = sauvegarde;
+      ptcercle cercle = sauvegarde_cer;
 
       int i = 1;
 
@@ -359,16 +359,16 @@ void afficherListe(ptdroite liste_de_droite)
 
 /***************************************** Rectangle *********************************************/
 
-void insertion_rect(ptrectangle *sauvegarde, ptrectangle rectangle)
+void insertion_rect(ptrectangle *sauvegarde_rect, ptrectangle rectangle)
   {
-      // Si le sauvegarde ne contient aucun rectangle.
-      if (*sauvegarde == NULL)
+      // Si le sauvegarde_rect ne contient aucun rectangle.
+      if (*sauvegarde_rect == NULL)
         {
-            *sauvegarde = rectangle;
+            *sauvegarde_rect = rectangle;
         }
-        else // La sauvegarde contient au moins un rectangle.
+        else // La sauvegarde_rect contient au moins un rectangle.
           {
-              ptrectangle dernier_rectangle = *sauvegarde;
+              ptrectangle dernier_rectangle = *sauvegarde_rect;
               while (dernier_rectangle->suivant != NULL)
                 {
                     dernier_rectangle = dernier_rectangle->suivant;
@@ -377,10 +377,10 @@ void insertion_rect(ptrectangle *sauvegarde, ptrectangle rectangle)
           }
   }
 
-// Procedure permettant d'afficher les rectangles du sauvegarde passe en parametre.
-void afficher_ret(ptrectangle sauvegarde)
+// Procedure permettant d'afficher les rectangles du sauvegarde_rect passe en parametre.
+void afficher_sauv_rect(ptrectangle sauvegarde_rect)
   {
-      ptrectangle rectangle = sauvegarde;
+      ptrectangle rectangle = sauvegarde_rect;
 
       int i = 1;
 
