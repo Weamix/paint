@@ -3,6 +3,8 @@
 
 #include <GL/glut.h>
 
+#include "figure.h"
+
 // Vous pouvez modifier ce fichier si vous voulez mais ce n'est pas forcément nécessaire
 
 void initialisation_fenetre();
