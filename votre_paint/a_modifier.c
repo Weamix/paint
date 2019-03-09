@@ -300,14 +300,14 @@ void insertion(ptcercle *sauvegarde, ptcercle cercle)
 void affichersauvegarde(ptcercle sauvegarde)
   {
       ptcercle cercle = sauvegarde;
-  
+
       int i = 1;
-  
+
       while (cercle != NULL)
         {
-            printf("cercle %d avec coordonées de centre x = %d ; y = %d  et rayon = %d et plein = %d \n", i, cercle->x_centre, cercle->y_centre, cercle->rayon, cercle->plein);
+            printf("Cercle %d avec coordonées de centre x = %d ; y = %d  et rayon = %d et plein = %d \n", i, cercle->x_centre, cercle->y_centre, cercle->rayon, cercle->plein);
             cercle = cercle->suivant;
-        
+
             i++;
         }
   }
@@ -381,14 +381,14 @@ void insertion(ptrectangle *sauvegarde, ptrectangle rectangle)
 void affichersauvegarde(ptrectangle sauvegarde)
   {
       ptrectangle rectangle = sauvegarde;
-  
+
       int i = 1;
-  
+
       while (rectangle != NULL)
         {
-            printf("rectangle %d avec hauteur = %d , large = %d , x base = %d , y base = %d et plein = %d \n", i, rectangle->large, rectangle->hauteur,rectangle->xbase,rectangle->ybase, rectangle->plein);
+            printf("Rectangle %d avec hauteur = %d , large = %d , x base = %d , y base = %d et plein = %d \n", i, rectangle->large, rectangle->hauteur,rectangle->xbase,rectangle->ybase, rectangle->plein);
             rectangle = rectangle->suivant;
-        
+
             i++;
         }
   }
