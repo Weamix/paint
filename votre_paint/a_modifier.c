@@ -11,11 +11,11 @@ void initialisation_fenetre()
  {
   effacer();
 
-  afficher_texte(420,350,"Appuyer sur la touche:",0,0,0);
-  afficher_texte(420,320,"4 pour une droite",0,0,0);
-  afficher_texte(420,290,"5 pour un cercle",0,0,0);
-  afficher_texte(420,260,"8 pour tout effacer",0,0,0);
-  afficher_texte(420,230,"9 pour un rectangle",0,0,0);
+  afficher_texte(420,350,"Appuyer sur la touche :",0,0,0);
+  afficher_texte(420,320,"4 pour une droite.",0,0,0);
+  afficher_texte(420,290,"5 pour un cercle.",0,0,0);
+  afficher_texte(420,260,"8 pour tout effacer.",0,0,0);
+  afficher_texte(420,230,"9 pour un rectangle.",0,0,0);
 
   afficher_rectangle(250,150,45,90,0);
   afficher_rectangle(75,50,100,270,1);
