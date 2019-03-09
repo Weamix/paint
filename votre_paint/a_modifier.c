@@ -10,19 +10,19 @@ char choix=-1;
 void initialisation_fenetre()
  {
   effacer();
-  
+
   afficher_texte(420,350,"Appuyer sur la touche:",0,0,0);
   afficher_texte(420,320,"4 pour une droite",0,0,0);
   afficher_texte(420,290,"5 pour un cercle",0,0,0);
   afficher_texte(420,260,"8 pour tout effacer",0,0,0);
   afficher_texte(420,230,"9 pour un rectangle",0,0,0);
-  
+
   afficher_rectangle(250,150,45,90,0);
   afficher_rectangle(75,50,100,270,1);
-  
+
   afficher_cercle(150,500,300,0);
   afficher_cercle(50,500,530,1);
-  
+
   afficher_droite(0,40);
  }
 
@@ -36,14 +36,14 @@ void affichage()
 
   // On affiche 4 points à chaque fois pour que ce soit plus visible qu'un seul pixel.
   // Juste plus de confort pour ce programme de test.
-  
+
   if(choix=='1')
     {
       afficher_point(50,75,0,0,0);
       afficher_point(50,76,0,0,0);
       afficher_point(51,75,0,0,0);
       afficher_point(51,76,0,0,0);
-    
+
       choix=-1;
     }
 
@@ -53,7 +53,7 @@ void affichage()
       afficher_point(150,76,0,0,0);
       afficher_point(151,75,0,0,0);
       afficher_point(151,76,0,0,0);
-    
+
       choix=-1;
     }
 
@@ -63,7 +63,7 @@ void affichage()
       afficher_point(150,76,0,0,0);
       afficher_point(151,75,0,0,0);
       afficher_point(151,76,0,0,0);
-    
+
       choix=-1;
     }
 
@@ -78,10 +78,10 @@ void affichage()
       while (rep == 'o')
         {
             printf("-------- Creation d'une nouvelle droite : -----------\n");
-        
+
             printf("coeffDir = ");
             scanf("%d", &d1);
-        
+
             printf("ordOrigine = ");
             scanf("%d", &d2);
 
@@ -119,25 +119,25 @@ void affichage()
       while (rep == 'o')
         {
             printf("-------- Creation d'un nouveau cercle : -----------\n");
-        
+
             printf("Entrez la coordonnées X du centre du cercle : \n");
             scanf("%d", &nb1);
-        
+
             printf("Entrez la coordonnées Y du centre du cercle :\n");
             scanf("%d", &nb2);
-        
+
             printf("Entrez la longueur du rayon :\n");
             scanf("%d", &nb3);
-        
+
             printf("plein ? (0 -> non , 1 -> oui ) : ");
             scanf("%d", &nb4);
 
             ptcercle nouveau_cercle = creation_cercle(nb1, nb2, nb3,nb4);
 
-            rayon=nb1;
-            x_centre=nb2;
-            y_centre=nb3;
-            plein=nb4;
+            rayon = nb1 ;
+            x_centre = nb2 ;
+            y_centre = nb3 ;
+            plein = nb4 ;
 
             afficher_cercle(rayon,x_centre,y_centre,plein);
 
@@ -175,7 +175,7 @@ void affichage()
   if(choix=='7')
     {
       initialisation_fenetre();
-    
+
       choix=-1;
     }
 
@@ -185,7 +185,7 @@ void affichage()
 
       choix=-1;
     }
-  
+
   if(choix=='9')
     {
       ptrectangle sauvegarde = NULL; // Par defaut le sauvegarde ne contient aucun rectangle.
@@ -215,11 +215,11 @@ void affichage()
 
             ptrectangle nouveau_rectangle = creation_rectangle_pt(nb1, nb2, nb3, nb4, nb5);
 
-            hauteur = nb1;
-            large = nb2;
-            xbase = nb3;
-            ybase = nb4;
-            plein = nb5;
+            hauteur = nb1 ;
+            large = nb2 ;
+            xbase = nb3 ;
+            ybase = nb4 ;
+            plein = nb5 ;
 
             afficher_rectangle(large,hauteur,xbase,ybase,plein);
 
@@ -231,11 +231,11 @@ void affichage()
             printf("Voulez vous ajouter un nouveau rectangle ? o/n: ");
             scanf(" %c", &rep);
         }
-      
+
       printf("Affichage des rectangles du sauvegarde : \n");
 
       affichersauvegarde(sauvegarde);
-    
+
       choix=-1;
     }
  }
