@@ -278,7 +278,7 @@ void clavier(unsigned char key, int x, int y)
 
 /***************************************** Cercle *********************************************/
 
-void insertion(ptcercle *sauvegarde, ptcercle cercle)
+void insertion_cer(ptcercle *sauvegarde, ptcercle cercle)
   {
       // Si le sauvegarde ne contient aucun cercle.
       if (*sauvegarde == NULL)
@@ -297,7 +297,7 @@ void insertion(ptcercle *sauvegarde, ptcercle cercle)
   }
 
 // Procedure permettant d'afficher les cercles de la sauvegarde passant en parametre.
-void affichersauvegarde(ptcercle sauvegarde)
+void afficher_cer(ptcercle sauvegarde)
   {
       ptcercle cercle = sauvegarde;
 
@@ -322,7 +322,7 @@ Il faut noter ici qu'on fait une insersion en queue de liste, c-à-d qu'on cherc
 
 */
 
-void insertion(ptdroite *liste_de_droite, ptdroite droite)
+void insertion_dr(ptdroite *liste_de_droite, ptdroite droite)
   {
       // Si la liste_de_droite ne contient aucune droite !
       if (*liste_de_droite == NULL)
@@ -359,7 +359,7 @@ void afficherListe(ptdroite liste_de_droite)
 
 /***************************************** Rectangle *********************************************/
 
-void insertion(ptrectangle *sauvegarde, ptrectangle rectangle)
+void insertion_rect(ptrectangle *sauvegarde, ptrectangle rectangle)
   {
       // Si le sauvegarde ne contient aucun rectangle.
       if (*sauvegarde == NULL)
@@ -378,7 +378,7 @@ void insertion(ptrectangle *sauvegarde, ptrectangle rectangle)
   }
 
 // Procedure permettant d'afficher les rectangles du sauvegarde passe en parametre.
-void affichersauvegarde(ptrectangle sauvegarde)
+void afficher_ret(ptrectangle sauvegarde)
   {
       ptrectangle rectangle = sauvegarde;
 
