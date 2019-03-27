@@ -2,8 +2,179 @@
 #include "figure.h"
 #include "a_modifier.h"
 
+ptglobal sauvegarde_item_global_actuelle=NULL ;
+ptglobal sauvegarde_item_global_supp=NULL ;
+
+ptglobal creation_point(int nb1, int nb2)
+{
+    ptglobal nouveau;
+    nouveau=malloc(sizeof(tglobal)); // On crée la structure d'un nouveau point !
+    // On remplit le point !
+
+    nouveau->x=nb1; // Ecriture equivalente a (*nouveau).longueurs = nb1; !
+    nouveau->y=nb2;
+    nouveau->type = 'p';
+    nouveau->suivant=NULL;// Rien derrire le point.
+
+    return nouveau;
+}
+void insertion_item_point(ptglobal *sauvegarde_item_global, int x_position , int y_position,ptglobal sauvegarde_item_global_supp)
+  {
+    ptglobal newpoint ;
+    newpoint=creation_point(x_position ,y_position );
+    newpoint->suivant=*sauvegarde_item_global ;
+    *sauvegarde_item_global = newpoint ;
+    free(sauvegarde_item_global_supp);
+  }
+
+  ptglobal creation_droite(int d1, int d2)
+  {
+
+      ptglobal nouveau;
+      nouveau=malloc(sizeof(tglobal));  // On crée la structure d'une nouvelle droite.
+
+      nouveau->coeffDir=d1;
+      nouveau->ordOrigine=d2;  // On remplit la droite !
+      nouveau->type = 'd' ;
+      nouveau->suivant=NULL;  // Rien derriére la droite !
+      return nouveau;
+  }
+  void insertion_item_droite(ptglobal *sauvegarde_item_global, int d1, int d2,ptglobal sauvegarde_item_global_supp) { // Fonction qui insière une droite dans une liste
+      ptglobal newdroite ;
+      newdroite=creation_droite(d1,d2) ;
+      newdroite->suivant= *sauvegarde_item_global ;
+      *sauvegarde_item_global = newdroite ;
+      free(sauvegarde_item_global_supp);
+  }
+  ptglobal creation_rectangle(int nb1, int nb2, int nb3, int nb4, int nb5)
+  {
+      ptglobal nouveau;
+      nouveau=malloc(sizeof(tglobal)); // On crée la structure d'un nouveau rectangle.
+      // On remplit le rectangle.
+
+      nouveau->hauteur=nb1; // Ecriture equivalente a (*nouveau).hauteurs = nb1; !
+      nouveau->large=nb2;
+      nouveau->xbase=nb3;
+      nouveau->ybase=nb4;
+      nouveau->plein_r=nb5;
+      nouveau->type= 'r' ;
+      nouveau->suivant=NULL; // Rien derriere le rectangle !
+      return nouveau;
+  }
+  void insertion_item_rect(ptglobal *sauvegarde_item_global, int large, int hauteur,int xbase,int ybase,int plein_r,ptglobal sauvegarde_item_global_supp) { // Fonction qui insière un rectangle dans une liste
+      ptglobal newrect ;
+      newrect=creation_rectangle(large,hauteur,xbase,ybase,plein_r) ;
+      newrect->suivant= *sauvegarde_item_global ;
+      *sauvegarde_item_global = newrect ;
+      free(sauvegarde_item_global_supp);
+  }
+  ptglobal creation_cercle(int nb1, int nb2, int nb3, int nb4)
+  {
+      ptglobal nouveau;
+      nouveau=malloc(sizeof(tglobal)); // On cre la structure d'un nouveau cercle.
+      // On remplit le cercle !
+
+      nouveau->x_centre=nb1; // Ecriture equivalente a (*nouveau).x_centre = nb1; !
+      nouveau->y_centre=nb2;
+      nouveau->rayon=nb3;
+      nouveau->plein_c=nb4;
+      nouveau->type= 'c' ;
+      nouveau->suivant=NULL; // Rien derriere le cercle.
+      return nouveau;
+  }
+  void insertion_item_cercle(ptglobal *sauvegarde_item_global, int rayon, int x_centre,int y_centre,int plein_c,ptglobal sauvegarde_item_global_supp) { // Fonction qui insère un cercle dans une liste
+      ptglobal newcercle ;
+      newcercle=creation_cercle(rayon,x_centre,y_centre,plein_c) ;
+      newcercle->suivant= *sauvegarde_item_global ;
+      *sauvegarde_item_global = newcercle ;
+      free(sauvegarde_item_global_supp);
+  }
+void afficherListePoint(ptglobal sauvegarde_item_global)
+{
+  if (sauvegarde_item_global == NULL)
+  {
+      printf(" liste  vide");
+  }
+
+  ptglobal sauvegarde_actuel = sauvegarde_item_global;
+
+  while (sauvegarde_actuel != NULL)
+  {
+  if (sauvegarde_actuel->type == 'p') {
+    printf("x %d \n", sauvegarde_actuel->x);
+    printf("y %d \n", sauvegarde_actuel->y);
+    printf ("\n") ;
+  }
+      sauvegarde_actuel = sauvegarde_actuel->suivant;
+  }
+  printf("NULL\n");
+}
 char choix=-1;
 
+void afficherListeDroite(ptglobal sauvegarde_item_global) // Afficher la liste des droites
+{
+    if (sauvegarde_item_global == NULL)
+    {
+       printf(" liste  vide");
+    }
+
+    ptglobal sauvegarde_actuel = sauvegarde_item_global;
+
+    while (sauvegarde_actuel != NULL)
+    {
+		if (sauvegarde_actuel->type == 'd') {
+			printf("coefficient directeur %d \n ", sauvegarde_actuel->coeffDir);
+			printf("ordonne %d \n",sauvegarde_actuel->ordOrigine);
+			printf("\n") ;
+		}
+        sauvegarde_actuel = sauvegarde_actuel->suivant;
+    }
+    printf("NULL\n");
+}
+void afficherListeRect(ptglobal sauvegarde_item_global) //Afficher la liste des rectangles
+{
+    if (sauvegarde_item_global == NULL)
+    {
+        printf(" liste  vide");
+    }
+
+    ptglobal sauvegarde_actuel = sauvegarde_item_global;
+
+    while (sauvegarde_actuel != NULL)
+    {
+		if (sauvegarde_actuel->type == 'r') {
+			printf("hauteur %d \n",sauvegarde_actuel->hauteur);
+			printf("large %d \n",sauvegarde_actuel->large);
+			printf("xbase %d \n",sauvegarde_actuel->xbase);
+			printf("ybase %d \n",sauvegarde_actuel->ybase);
+			printf ("plein %d \n",sauvegarde_actuel->plein_r) ;
+			printf ("\n") ;
+		}
+        sauvegarde_actuel = sauvegarde_actuel->suivant;
+    }
+    printf("NULL\n");
+}
+void afficherListeCercle(ptglobal sauvegarde_item_global) //Afficher la liste des cercles
+{
+    if (sauvegarde_item_global == NULL)
+    {
+        printf(" liste  vide");
+    }
+
+    ptglobal sauvegarde_actuel = sauvegarde_item_global;
+    while (sauvegarde_actuel != NULL)
+    {
+		if (sauvegarde_actuel->type == 'c') {
+			printf("rayon %d \n ", sauvegarde_actuel->rayon);
+			printf("x centre %d \n",sauvegarde_actuel->x_centre) ;
+			printf("y centre %d \n",sauvegarde_actuel->y_centre);
+      printf("plein %d \n",sauvegarde_actuel->plein_c);
+			printf("\n") ;
+		}
+        sauvegarde_actuel = sauvegarde_actuel->suivant;
+    }
+    printf("NULL\n");
+}
 // Procédure appelée lors de la création de la fenêtre que vous pouvez réappeler de nouveau pour réinitilisation.
 // Utile si vous voulez créer un menu ou une interface graphique...
 
@@ -49,101 +220,101 @@ void affichage()
 
   if(choix=='2')
     {
-      afficher_point(150,75,0,0,0);
-      afficher_point(150,76,0,0,0);
-      afficher_point(151,75,0,0,0);
-      afficher_point(151,76,0,0,0);
+      ctrly(&sauvegarde_item_global_supp, &sauvegarde_item_global_actuelle);
+      afficherListeRect(sauvegarde_item_global_actuelle);
+      afficherListeCercle(sauvegarde_item_global_actuelle);
+      afficherListeDroite(sauvegarde_item_global_actuelle);
+      afficherListePoint(sauvegarde_item_global_actuelle);
+      printf("test ctrly");
+      rafraichir();
 
       choix=-1;
     }
 
   if(choix=='3')
     {
-      afficher_point(150,75,0,0,0);
-      afficher_point(150,76,0,0,0);
-      afficher_point(151,75,0,0,0);
-      afficher_point(151,76,0,0,0);
+      ctrlz(&sauvegarde_item_global_supp, &sauvegarde_item_global_actuelle);
+      afficherListeRect(sauvegarde_item_global_supp);
+      afficherListeCercle(sauvegarde_item_global_supp);
+      afficherListeDroite(sauvegarde_item_global_supp);
+      afficherListePoint(sauvegarde_item_global_supp);
+      printf("test ctrlz");
+      rafraichir();
 
       choix=-1;
     }
 
   if(choix=='4')
     {
-      ptdroite liste_de_droite = NULL; // Par defaut la liste_de_droite ne contient aucune droite.
-
       char rep = 'o';
 
-      int d1, d2, a, b;
+      int nb10,nb11,a,b;
 
       while (rep == 'o')
         {
             printf("-------- Creation d'une nouvelle droite : -----------\n");
 
             printf("coeffDir = ");
-            scanf("%d", &d1);
+            scanf("%d", &nb10);
 
             printf("ordOrigine = ");
-            scanf("%d", &d2);
-
-            ptdroite nouvelle_droite = creation_droite(d1, d2);
-
-            a = d1 ;
-            b = d2 ;
+            scanf("%d", &nb11);
+            ptglobal nouveau_item = creation_point(nb10,nb11);
+            a = nb10 ;
+            b = nb11 ;
 
             afficher_droite(a,b);
 
             printf("La droite est faite. \n");
 
-            insertion_dr(&liste_de_droite, nouvelle_droite); // Passage par adresse pour la liste_de_droite.
-
             printf("Il ne faut pas s'inquieter, la droite va etre faite une fois avoir dit non 'n'. \n ");
             printf("Voulez vous ajouter une nouvelle droite ? o/n : ");
             scanf(" %c", &rep);
+            insertion_item_droite(&sauvegarde_item_global_actuelle,a,b, sauvegarde_item_global_supp);
         }
 
       printf("Affichage des droites de la liste_de_droite : \n");
 
-      afficherListe(liste_de_droite);
+      afficherListeDroite(sauvegarde_item_global_actuelle);
 
       choix=-1;
     }
 
   if(choix=='5')
     {
-      ptcercle sauvegarde_cer = NULL; // Par defaut le sauvegarde_cer ne contient aucun cercle.
 
       char rep = 'o';
-      int nb1, nb2, nb3,nb4;
-      int x_centre,y_centre,rayon,plein;
+      int nb6, nb7, nb8,nb9;
+      int x_centre,y_centre,rayon,plein_c,forme;
 
       while (rep == 'o')
         {
             printf("-------- Creation d'un nouveau cercle : -----------\n");
 
             printf("Entrez la coordonnées X du centre du cercle : \n");
-            scanf("%d", &nb1);
+            scanf("%d", &nb6);
 
             printf("Entrez la coordonnées Y du centre du cercle :\n");
-            scanf("%d", &nb2);
+            scanf("%d", &nb7);
 
             printf("Entrez la longueur du rayon :\n");
-            scanf("%d", &nb3);
+            scanf("%d", &nb8);
 
             printf("plein ? (0 -> non , 1 -> oui ) : ");
-            scanf("%d", &nb4);
+            scanf("%d", &nb9);
 
-            ptcercle nouveau_cercle = creation_cercle(nb1, nb2, nb3,nb4);
+            ptglobal nouveau_item = creation_cercle(nb6,nb7,nb8,nb9);
 
-            rayon = nb1 ;
-            x_centre = nb2 ;
-            y_centre = nb3 ;
-            plein = nb4 ;
+            rayon = nb8 ;
+            x_centre = nb6 ;
+            y_centre = nb7 ;
+            plein_c = nb9 ;
 
-            afficher_cercle(rayon,x_centre,y_centre,plein);
+            afficher_cercle(rayon,x_centre,y_centre,plein_c);
 
             printf("Le cercle est fait. \n");
 
-            insertion_cer(&sauvegarde_cer, nouveau_cercle); // Passage par adresse pour sauvegarde_cer.
+            insertion_item_cercle(&sauvegarde_item_global_actuelle,rayon,x_centre,y_centre,plein_c, sauvegarde_item_global_supp); // Passage par adresse pour sauvegarde_cer.
 
             printf("Pas d'inquietude ! Le(s) cercle(s) n'apparait qu'après avoir choisi non 'n'. \n");
             printf("Voulez vous ajouter un nouveau cercle ? o/n: ");
@@ -152,7 +323,7 @@ void affichage()
 
       printf("Affichage des cercles du sauvegarde_cer : \n");
 
-      afficher_sauv_cer(sauvegarde_cer);
+      afficherListeCercle(sauvegarde_item_global_actuelle);
 
       choix=-1;
     }
@@ -160,7 +331,9 @@ void affichage()
   if(choix=='6')
     {
       int x, y;
-
+      char rep = 'o';
+      while (rep == 'o')
+        {
       printf("Entrez la coordonnées X du point à afficher :\n");
       scanf(" %d",&x);
 
@@ -168,7 +341,13 @@ void affichage()
       scanf(" %d",&y);
 
       afficher_point(x,y,0,0,0);
+      insertion_item_point(&sauvegarde_item_global_actuelle,x,y, sauvegarde_item_global_supp);
+      printf("Voulez vous ajouter un nouveau cercle ? o/n: ");
+      scanf(" %c", &rep);
+}
+      printf("Affichage des cercles du sauvegarde_cer : \n");
 
+      afficherListeCercle(sauvegarde_item_global_actuelle);
       choix=-1;
     }
 
@@ -188,11 +367,11 @@ void affichage()
 
   if(choix=='9')
     {
-      ptrectangle sauvegarde_rect = NULL; // Par defaut le sauvegarde_rect ne contient aucun rectangle.
+      ptglobal sauvegarde_item_global ; // Par defaut le sauvegarde_item_global ne contient aucun rectangle.
 
       char rep = 'o';
-      int nb1, nb2, nb3, nb4, nb5;
-      int large,hauteur,xbase,ybase,plein ;
+      int nb0, nb1, nb2, nb3, nb4, nb5;
+      int large,hauteur,xbase,ybase,plein_r,forme ;
 
       while (rep == 'o')
         {
@@ -213,28 +392,26 @@ void affichage()
             printf("plein ? (0 -> non , 1 -> oui ) : ");
             scanf("%d", &nb5);
 
-            ptrectangle nouveau_rectangle = creation_rectangle_pt(nb1, nb2, nb3, nb4, nb5);
-
             hauteur = nb1 ;
             large = nb2 ;
             xbase = nb3 ;
             ybase = nb4 ;
-            plein = nb5 ;
+            plein_r = nb5 ;
 
-            afficher_rectangle(large,hauteur,xbase,ybase,plein);
+            afficher_rectangle(large,hauteur,xbase,ybase,plein_r);
 
             printf("Le rectangle est fait. \n");
 
-            insertion_rect(&sauvegarde_rect, nouveau_rectangle); // Passage par adresse pour sauvegarde_rect.
+            insertion_item_rect(&sauvegarde_item_global_actuelle,large,hauteur,xbase,ybase,plein_r, sauvegarde_item_global_supp); // Passage par adresse pour sauvegarde_item_global.
 
             printf("Il ne faut pas s'inquieter, le(s) rectangle(s) va etre faite une fois avoir dit non 'n'. \n ");
             printf("Voulez vous ajouter un nouveau rectangle ? o/n: ");
             scanf(" %c", &rep);
         }
 
-      printf("Affichage des rectangles du sauvegarde_rect : \n");
+      printf("Affichage des rectangles du sauvegarde_item_global : \n");
 
-      afficher_sauv_rect(sauvegarde_rect);
+      afficherListeRect(sauvegarde_item_global_actuelle);
 
       choix=-1;
     }
@@ -274,121 +451,4 @@ void clavier(unsigned char key, int x, int y)
       choix=key;
     else
       exit(0);
-  }
-
-/***************************************** Cercle *********************************************/
-
-void insertion_cer(ptcercle *sauvegarde_cer, ptcercle cercle)
-  {
-      // Si le sauvegarde_cer ne contient aucun cercle.
-      if (*sauvegarde_cer == NULL)
-        {
-            *sauvegarde_cer = cercle;
-        }
-        else // La sauvegarde_cer contient au moins un cercle.
-          {
-              ptcercle dernier_cercle = *sauvegarde_cer;
-              while (dernier_cercle->suivant != NULL)
-                {
-                    dernier_cercle = dernier_cercle->suivant;
-                }
-              dernier_cercle->suivant = cercle;
-          }
-  }
-
-// Procedure permettant d'afficher les cercles de la sauvegarde_cer passant en parametre.
-void afficher_sauv_cer(ptcercle sauvegarde_cer)
-  {
-      ptcercle cercle = sauvegarde_cer;
-
-      int i = 1;
-
-      while (cercle != NULL)
-        {
-            printf("Cercle %d avec coordonées de centre x = %d ; y = %d  et rayon = %d et plein = %d \n", i, cercle->x_centre, cercle->y_centre, cercle->rayon, cercle->plein);
-            cercle = cercle->suivant;
-
-            i++;
-        }
-  }
-
-/***************************************** Droite *********************************************/
-
-/*
-
-Cette fonction permet d'inserer une droite dans une liste_de_droite. La liste_de_droite est de type ptdroite et le passage par adresse de ce parametre
-permet de conserve les changements qu'elle subit (ajout d'une nouvelle droite). Le second parametre est la droite qu'on desire inserer.
-Il faut noter ici qu'on fait une insersion en queue de liste, c-à-d qu'on cherche la dernière droite d'une liste_de_droite et on insere la nouvelle droite.
-
-*/
-
-void insertion_dr(ptdroite *liste_de_droite, ptdroite droite)
-  {
-      // Si la liste_de_droite ne contient aucune droite !
-      if (*liste_de_droite == NULL)
-          {
-              *liste_de_droite = droite;
-          }
-          else // La liste_de_droite contient au moins une droite.
-            {
-                ptdroite derniere_droite = *liste_de_droite;
-                while (derniere_droite->suivant != NULL)
-                  {
-                      derniere_droite = derniere_droite->suivant;
-                  }
-                derniere_droite->suivant = droite;
-            }
-  }
-
-// Procedure permettant d'afficher les droites de la liste_de_droite passant en paramètre.
-void afficherListe(ptdroite liste_de_droite)
-  {
-      ptdroite droite = liste_de_droite;
-
-      int i = 1;
-
-      while (droite != NULL)
-        {
-            printf("Droite %d avec coeffDir = %d et ordOrigine = %d \n", i, droite->coeffDir, droite->ordOrigine);
-
-            droite = droite->suivant;
-
-            i++;
-        }
-  }
-
-/***************************************** Rectangle *********************************************/
-
-void insertion_rect(ptrectangle *sauvegarde_rect, ptrectangle rectangle)
-  {
-      // Si le sauvegarde_rect ne contient aucun rectangle.
-      if (*sauvegarde_rect == NULL)
-        {
-            *sauvegarde_rect = rectangle;
-        }
-        else // La sauvegarde_rect contient au moins un rectangle.
-          {
-              ptrectangle dernier_rectangle = *sauvegarde_rect;
-              while (dernier_rectangle->suivant != NULL)
-                {
-                    dernier_rectangle = dernier_rectangle->suivant;
-                }
-              dernier_rectangle->suivant = rectangle;
-          }
-  }
-
-// Procedure permettant d'afficher les rectangles du sauvegarde_rect passe en parametre.
-void afficher_sauv_rect(ptrectangle sauvegarde_rect)
-  {
-      ptrectangle rectangle = sauvegarde_rect;
-
-      int i = 1;
-
-      while (rectangle != NULL)
-        {
-            printf("Rectangle %d avec hauteur = %d , large = %d , x base = %d , y base = %d et plein = %d \n", i, rectangle->large, rectangle->hauteur,rectangle->xbase,rectangle->ybase, rectangle->plein);
-            rectangle = rectangle->suivant;
-
-            i++;
-        }
   }

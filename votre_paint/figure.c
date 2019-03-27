@@ -15,19 +15,19 @@ void afficher_point(int x, int y, double r, double v, double b)
    glEnd();
  }
 
-void afficher_rectangle(int large,int hauteur,int xbase,int ybase,int plein)
+void afficher_rectangle(int large,int hauteur,int xbase,int ybase,int plein_r)
  {
    int i;
    int j;
    int k;
    int l;
-	
+
    large=large+xbase;
    hauteur=hauteur+ybase;
-	
-   printf("%d donc voici un rectangle plein ",plein);
-	
-  if (plein == 1)
+
+   printf("%ls donc voici un rectangle plein ",&plein_r);
+
+  if (plein_r == 1)
    {
      /*printf("debug if ");*/
      for (k = 0; k <= hauteur ; k++ )
@@ -40,7 +40,7 @@ void afficher_rectangle(int large,int hauteur,int xbase,int ybase,int plein)
          }
       }
    }
-	
+
   else
    {
      for (i = xbase; i <= large ; i++)
@@ -62,11 +62,11 @@ void afficher_rectangle(int large,int hauteur,int xbase,int ybase,int plein)
    }
  }
 
-void afficher_cercle(int rayon,int x_centre,int y_centre,int plein)
+void afficher_cercle(int rayon,int x_centre,int y_centre,int plein_c)
  {
   int x ,y ,m ,tempx,tempy;
 
-  if (plein == 1) 
+  if (plein_c == 1)
    {
     for(y=-rayon; y<=rayon; y++)
      {
@@ -79,12 +79,12 @@ void afficher_cercle(int rayon,int x_centre,int y_centre,int plein)
       }
     }
   }
-  else 
+  else
    {
     x = 0 ;
     y = rayon ;
     m = 5 - 4*rayon ;
-	
+
     while (x <= y )
      {
       tempx = x+x_centre;
@@ -123,7 +123,7 @@ void afficher_cercle(int rayon,int x_centre,int y_centre,int plein)
  }
 
 
-void afficher_droite(int a,int b) 
+void afficher_droite(int a,int b)
  {
   int x1, x2, y1, y2;
 
@@ -135,28 +135,54 @@ void afficher_droite(int a,int b)
   int dx,sx ;
   int dy,sy ;
   int err,e2 ;
-	
+
   dx = abs(x2-x1), sx = x1<x2 ? 1 : -1;
   dy = abs(y2-y1), sy = y1<y2 ? 1 : -1;
   err = (dx>dy ? dx : -dy)/2, e2;
-	
+
   for(;;)
    {
     afficher_point(x1, y1, 0, 0, 0);
-	  
+
     if (x1==x2 && y1==y2) break;
      e2 = err;
-	  
+
     if (e2 >-dx)
      {
       err -= dy;
       x1 += sx;
      }
-	  
+
     if (e2 < dy)
      {
       err += dx;
       y1 += sy;
      }
+   }
+ }
+
+ void ctrlz(ptglobal *sauvegarde_item_global_supp, ptglobal *sauvegarde_item_global){
+   if(*sauvegarde_item_global==NULL){
+     printf("Suppression impossible: aucune figure\n");
+   }
+   else{
+     ptglobal old = *sauvegarde_item_global;
+     ptglobal new = old->suivant;
+     old->suivant = *sauvegarde_item_global_supp;
+     *sauvegarde_item_global_supp = old;
+     *sauvegarde_item_global = new;
+   }
+ }
+
+ void ctrly(ptglobal *sauvegarde_item_global_supp, ptglobal *sauvegarde_item_global){
+   if(*sauvegarde_item_global_supp==NULL){
+     printf("Annulation impossible: aucune figure\n");
+   }
+   else{
+     ptglobal old = *sauvegarde_item_global_supp;
+     ptglobal new = old->suivant;
+     old->suivant = *sauvegarde_item_global;  
+     *sauvegarde_item_global = old;
+     *sauvegarde_item_global_supp = new;
    }
  }
