@@ -2,8 +2,17 @@
 #include "figure.h"
 #include "a_modifier.h"
 
+double rouge = 0;
+double vert = 0;
+double bleu = 0;
+
 ptglobal sauvegarde_item_global_actuelle=NULL ;
 ptglobal sauvegarde_item_global_supp=NULL ;
+
+// la couleurs :
+
+int x_g , x_d , y_g , y_d ;
+
 
 ptglobal creation_point(int nb1, int nb2)
 {
@@ -180,21 +189,130 @@ void afficherListeCercle(ptglobal sauvegarde_item_global) //Afficher la liste de
 
 void initialisation_fenetre()
  {
-  effacer();
+  //effacer();
 
-  afficher_texte(420,350,"Appuyer sur la touche :",0,0,0);
-  afficher_texte(420,320,"4 pour une droite.",0,0,0);
-  afficher_texte(420,290,"5 pour un cercle.",0,0,0);
-  afficher_texte(420,260,"8 pour tout effacer.",0,0,0);
-  afficher_texte(420,230,"9 pour un rectangle.",0,0,0);
+  rouge = 1;
+  vert = 1;
+  bleu = 0;
+  afficher_rectangle(800,100,0,500,1);
+  afficher_rectangle(150,800,0,0,1);
+  rouge = 0;
+  vert = 0;
+  bleu = 0;
+  afficher_rectangle(50,70,45,200,0);
 
-  afficher_rectangle(250,150,45,90,0);
-  afficher_rectangle(75,50,100,270,1);
 
-  afficher_cercle(150,500,300,0);
-  afficher_cercle(50,500,530,1);
+  afficher_rectangle(10,500,150,0,0);
+int k,l;
+  for (k = 0; k <= 500 ; k++ )
+   {
+     /*printf("debug k ");*/
+     for (l = 0; l <= 10 ; l++)
+      {
+        /*printf("debug");*/
+  afficher_point(150+l,0+k,0,0,0);
+      }
+   }
+   for (k = 0; k <= 10 ; k++ )
+    {
+      /*printf("debug k ");*/
+      for (l = 0; l <= 700 ; l++)
+       {
+         /*printf("debug");*/
+   afficher_point(150+l,500+k,0,0,0);
+       }
+    }
+    rouge = 1;
+    vert = 0;
+    bleu = 0;
+  afficher_rectangle(25,25,440,520,1);
+    rouge = 0;
+    vert = 1;
+    bleu = 0;
+  afficher_rectangle(25,25,465,520,1);
+  rouge = 0;
+  vert = 0;
+  bleu = 1;
+  afficher_rectangle(25,25,490,520,1);
+  rouge = 1;
+  vert = 1;
+  bleu = 0;
+  afficher_rectangle(25,25,415,520,1);
+  rouge = 1;
+  vert = 1;
+  bleu = 1;
+  afficher_rectangle(25,25,440,545,1);
+  rouge = 1;
+  vert = 0;
+  bleu = 1;
+  afficher_rectangle(25,25,465,545,1);
+  rouge = 0;
+  vert = 1;
+  bleu = 1;
+  afficher_rectangle(25,25,490,545,1);
+  rouge = 0;
+  vert = 0;
+  bleu = 0;
+  afficher_rectangle(25,25,515,545,1);
 
-  afficher_droite(0,40);
+  afficher_rectangle(100,50,440,520,0);
+
+
+  afficher_droite(-1,100);
+
+  rouge = 0;
+  vert = 0;
+  bleu = 1;
+    afficher_rectangle(75,75,600,515,1);
+    rouge = 1;
+    vert = 1;
+    bleu = 1;
+    afficher_rectangle(45,15,614,560,1);
+    afficher_rectangle(15,65,630,520,1);
+    rouge = 0;
+    vert = 0;
+    bleu = 0;
+rouge = 1;
+vert = 0;
+bleu = 0;
+  afficher_cercle(40,740,555,1);
+  rouge = 1;
+  vert = 1;
+  bleu = 1;
+  afficher_rectangle(45,15,718,545,1);
+  rouge = 0;
+  vert = 0;
+  bleu = 0;
+
+  afficher_cercle(50,75,400,1);
+
+  afficher_cercle(30,340,545,1);
+
+  rouge = 1;
+  vert = 1;
+  bleu = 0;
+  afficher_cercle(20,340,545,1);
+  rouge = 0;
+  vert = 0;
+  bleu = 0;
+  afficher_rectangle(10,45,336,545,1);
+
+  afficher_point(50,550,0,0,0);
+  afficher_point(52,540,0,0,0);
+  afficher_point(54,530,0,0,0);
+  afficher_point(56,520,0,0,0);
+  afficher_point(58,510,0,0,0);
+  afficher_point(60,500,0,0,0);
+  afficher_point(62,510,0,0,0);
+  afficher_point(64,520,0,0,0);
+  afficher_point(66,530,0,0,0);
+  afficher_point(68,540,0,0,0);
+  afficher_point(70,550,0,0,0);
+  afficher_point(72,560,0,0,0);
+  afficher_point(74,570,0,0,0);
+  afficher_point(76,580,0,0,0);
+
+  //afficher_droite()
  }
 
 // Cette procédure est appelée lorsqu'aucun événement clavier/souris n'est détecté donc quasiment en continu.
@@ -207,85 +325,75 @@ void affichage()
 
   // On affiche 4 points à chaque fois pour que ce soit plus visible qu'un seul pixel.
   // Juste plus de confort pour ce programme de test.
-
-  if(choix=='1')
+  if ((x_g > 440) && (x_g < 465) && (y_g > 60) && (y_g < 85) )
+  {
+    rouge = 1 ;
+    vert = 0 ;
+    bleu = 0 ;
+    x_g = 0;
+    y_g = 0;
+  }
+  if ((x_g > 465 )&& (x_g < 490) && (y_g > 60) && (y_g < 85 ))
+  {
+    rouge = 0 ;
+    vert = 1 ;
+    bleu = 0 ;
+    x_g = 0;
+    y_g = 0;
+  }
+  if ((x_g > 490 )&& (x_g < 515) && (y_g > 60) && (y_g < 85 ))
+  {
+    rouge = 0 ;
+    vert = 0 ;
+    bleu = 1 ;
+    x_g = 0;
+    y_g = 0;
+  }
+  if ((x_g > 515 )&&(x_g < 540) && (y_g > 60) && (y_g < 85 ))
+  {
+    rouge = 1 ;
+    vert = 1 ;
+    bleu = 0 ;
+    x_g = 0;
+    y_g = 0;
+  }
+  if ((x_g > 440) && (x_g < 465) && (y_g > 35) && (y_g < 60) )
+  {
+    rouge = 1 ;
+    vert = 1 ;
+    bleu = 1 ;
+    x_g = 0;
+    y_g = 0;
+  }
+  if ((x_g > 465 )&& (x_g < 490) && (y_g > 35) && (y_g < 60 ))
+  {
+    rouge = 1 ;
+    vert = 0 ;
+    bleu = 1 ;
+    x_g = 0;
+    y_g = 0;
+  }
+  if ((x_g > 490 )&& (x_g < 515) && (y_g > 35) && (y_g < 60 ))
+  {
+    rouge = 0 ;
+    vert = 1 ;
+    bleu = 1 ;
+    x_g = 0;
+    y_g = 0;
+  }
+  if ((x_g > 515 )&&(x_g < 530) && (y_g > 35) && (y_g < 60 ))
+  {
+    rouge = 0 ;
+    vert = 0 ;
+    bleu = 0 ;
+    x_g = 0;
+    y_g = 0;
+  }
+    if ((x_g > 20 )&&(x_g < 120) && (y_g > 130) && (y_g < 230 ))
     {
-      afficher_point(50,75,0,0,0);
-      afficher_point(50,76,0,0,0);
-      afficher_point(51,75,0,0,0);
-      afficher_point(51,76,0,0,0);
-
-      choix=-1;
-    }
-
-  if(choix=='2')
-    {
-      ctrly(&sauvegarde_item_global_supp, &sauvegarde_item_global_actuelle);
-      afficherListeRect(sauvegarde_item_global_actuelle);
-      afficherListeCercle(sauvegarde_item_global_actuelle);
-      afficherListeDroite(sauvegarde_item_global_actuelle);
-      afficherListePoint(sauvegarde_item_global_actuelle);
-      printf("test ctrly");
-      rafraichir();
-
-      choix=-1;
-    }
-
-  if(choix=='3')
-    {
-      ctrlz(&sauvegarde_item_global_supp, &sauvegarde_item_global_actuelle);
-      afficherListeRect(sauvegarde_item_global_supp);
-      afficherListeCercle(sauvegarde_item_global_supp);
-      afficherListeDroite(sauvegarde_item_global_supp);
-      afficherListePoint(sauvegarde_item_global_supp);
-      printf("test ctrlz");
-      rafraichir();
-
-      choix=-1;
-    }
-
-  if(choix=='4')
-    {
-      char rep = 'o';
-
-      int nb10,nb11,a,b;
-
-      while (rep == 'o')
-        {
-            printf("-------- Creation d'une nouvelle droite : -----------\n");
-
-            printf("coeffDir = ");
-            scanf("%d", &nb10);
-
-            printf("ordOrigine = ");
-            scanf("%d", &nb11);
-            ptglobal nouveau_item = creation_point(nb10,nb11);
-            a = nb10 ;
-            b = nb11 ;
-
-            afficher_droite(a,b);
-
-            printf("La droite est faite. \n");
-
-            printf("Il ne faut pas s'inquieter, la droite va etre faite une fois avoir dit non 'n'. \n ");
-            printf("Voulez vous ajouter une nouvelle droite ? o/n : ");
-            scanf(" %c", &rep);
-            insertion_item_droite(&sauvegarde_item_global_actuelle,a,b, sauvegarde_item_global_supp);
-        }
-
-      printf("Affichage des droites de la liste_de_droite : \n");
-
-      afficherListeDroite(sauvegarde_item_global_actuelle);
-
-      choix=-1;
-    }
-
-  if(choix=='5')
-    {
-
       char rep = 'o';
       int nb6, nb7, nb8,nb9;
-      int x_centre,y_centre,rayon,plein_c,forme;
+      int x_centre,y_centre,rayon,plein_c;
 
       while (rep == 'o')
         {
@@ -324,54 +432,19 @@ void affichage()
       printf("Affichage des cercles du sauvegarde_cer : \n");
 
       afficherListeCercle(sauvegarde_item_global_actuelle);
-
-      choix=-1;
-    }
-
-  if(choix=='6')
-    {
-      int x, y;
-      char rep = 'o';
-      while (rep == 'o')
-        {
-      printf("Entrez la coordonnées X du point à afficher :\n");
-      scanf(" %d",&x);
-
-      printf("Entrez la coordonnées Y du point à afficher :\n");
-      scanf(" %d",&y);
-
-      afficher_point(x,y,0,0,0);
-      insertion_item_point(&sauvegarde_item_global_actuelle,x,y, sauvegarde_item_global_supp);
-      printf("Voulez vous ajouter un nouveau cercle ? o/n: ");
-      scanf(" %c", &rep);
-}
-      printf("Affichage des cercles du sauvegarde_cer : \n");
-
-      afficherListeCercle(sauvegarde_item_global_actuelle);
-      choix=-1;
-    }
-
-  if(choix=='7')
-    {
+      x_g = 0;
+      y_g = 0;
       initialisation_fenetre();
-
-      choix=-1;
     }
 
-  if(choix=='8')
+    if ((x_g > 20 )&&(x_g < 120) && (y_g > 320) && (y_g < 420 ))
     {
-      effacer();
 
-      choix=-1;
-    }
-
-  if(choix=='9')
-    {
       ptglobal sauvegarde_item_global ; // Par defaut le sauvegarde_item_global ne contient aucun rectangle.
 
       char rep = 'o';
       int nb0, nb1, nb2, nb3, nb4, nb5;
-      int large,hauteur,xbase,ybase,plein_r,forme ;
+      int large,hauteur,xbase,ybase,plein_r ;
 
       while (rep == 'o')
         {
@@ -412,17 +485,109 @@ void affichage()
       printf("Affichage des rectangles du sauvegarde_item_global : \n");
 
       afficherListeRect(sauvegarde_item_global_actuelle);
+      initialisation_fenetre();
+      x_g = 0;
+      y_g = 0;
 
-      choix=-1;
     }
- }
+
+      if ((x_g > 0 )&&(x_g < 140) && (y_g > 480 ) && (y_g < 600 ))
+{
+  char rep = 'o';
+
+  int nb10,nb11,a,b;
+
+  while (rep == 'o')
+    {
+        printf("-------- Creation d'une nouvelle droite : -----------\n");
+
+        printf("coeffDir = ");
+        scanf("%d", &nb10);
+
+        printf("ordOrigine = ");
+        scanf("%d", &nb11);
+        ptglobal nouveau_item = creation_point(nb10,nb11);
+        a = nb10 ;
+        b = nb11 ;
+
+        afficher_droite(a,b);
+
+        printf("La droite est faite. \n");
+
+        printf("Il ne faut pas s'inquieter, la droite va etre faite une fois avoir dit non 'n'. \n ");
+        printf("Voulez vous ajouter une nouvelle droite ? o/n : ");
+        scanf(" %c", &rep);
+        insertion_item_droite(&sauvegarde_item_global_actuelle,a,b, sauvegarde_item_global_supp);
+    }
+
+  printf("Affichage des droites de la liste_de_droite : \n");
+
+  afficherListeDroite(sauvegarde_item_global_actuelle);
+  initialisation_fenetre();
+  x_g = 0;
+  y_g = 0;
+
+}
+      if ((x_g > 1 )&&(x_g < 140) && (y_g > 0 ) && (y_g < 100 ))
+      {
+
+
+        int x, y;
+        char rep = 'o';
+        while (rep == 'o')
+          {
+        printf("Entrez la coordonnées X du point à afficher :\n");
+        scanf(" %d",&x);
+
+        printf("Entrez la coordonnées Y du point à afficher :\n");
+        scanf(" %d",&y);
+
+        afficher_point(x,y,rouge,vert,bleu);
+        insertion_item_point(&sauvegarde_item_global_actuelle,x,y, sauvegarde_item_global_supp);
+        printf("Voulez vous ajouter un nouveau point ? o/n: ");
+        scanf(" %c", &rep);
+  }
+        printf("Affichage des point du sauvegarde : \n");
+
+        afficherListePoint(sauvegarde_item_global_actuelle);
+        initialisation_fenetre();
+        x_g = 0;
+        y_g = 0;
+      }
+      if ((x_g > 300 )&&(x_g < 400) && (y_g > 10) && (y_g < 90 ))
+      {
+        effacer();
+        initialisation_fenetre();
+        x_g = 0;
+        y_g = 0;
+
+      }
+
+      if ((x_g > 600 )&&(x_g < 699) && (y_g > 10) && (y_g < 90 ))
+      {
+        ctrly(&sauvegarde_item_global_supp, &sauvegarde_item_global_actuelle);
+        printf("retour en avant effectué\n");
+        initialisation_fenetre();
+        x_g = 0;
+        y_g = 0;
+      }
+      if ((x_g > 700 )&&(x_g < 799) && (y_g > 10) && (y_g < 90 ))
+      {
+        ctrlz(&sauvegarde_item_global_supp, &sauvegarde_item_global_actuelle);
+        printf("retour en arriere effectué \n" );
+        initialisation_fenetre();
+        x_g = 0;
+        y_g = 0;
+      }
+
 
 void clic_gauche(int x, int y)
   {
     // Code exécuté lors d'un clic gauche.
     // Attention ! Pas de dessin dans cette fonction/procédure.
     // Utilisez des variables globales si vous avez besoin de faire communiquer cette procédure et celles du dessous.
-
+    x_g = x;
+    y_g = y;
     printf("Clic gauche en %d %d\n",x,y);
   }
 
@@ -432,7 +597,8 @@ void clic_droit(int x, int y)
     // Code exécuté lors d'un clic droit.
     // Attention ! Pas de dessin dans cette fonction/procédure.
     // Utilisez des variables globales si vous avez besoin de faire communiquer cette procédure et celles du dessous.
-
+    x_d = x;
+    y_d = y;
     printf("Clic droit en %d %d\n",x,y);
   }
 
@@ -452,3 +618,152 @@ void clavier(unsigned char key, int x, int y)
     else
       exit(0);
   }
+  void afficher_rectangle(int large,int hauteur,int xbase,int ybase,int plein_r)
+   {
+     int i;
+     int j;
+     int k;
+     int l;
+
+
+     printf("%ls donc voici un rectangle plein ",&plein_r);
+
+    if (plein_r == 1)
+     {
+
+       /*printf("debug if ");*/
+       for (k = 0; k <= hauteur ; k++ )
+        {
+          /*printf("debug k ");*/
+          for (l = 0; l <= large ; l++)
+           {
+        	   /*printf("debug");*/
+  	   afficher_point(xbase+l,ybase+k,rouge,vert,bleu);
+           }
+        }
+     }
+
+    if (plein_r == 0)
+     {
+       large=large+xbase;
+       hauteur=hauteur+ybase;
+       for (i = xbase; i <= large ; i++)
+        {
+          afficher_point(i,ybase,rouge,vert,bleu);
+        }
+       for (i = large; i >= xbase ; i--)
+        {
+          afficher_point(i,hauteur,rouge,vert,bleu);
+        }
+       for (j = ybase; j <= hauteur ; j++)
+        {
+          afficher_point(xbase,j,rouge,vert,bleu);
+        }
+       for (j = hauteur; j >= ybase ; j--)
+        {
+          afficher_point(large,j,rouge,vert,bleu);
+        }
+     }
+
+   }
+
+  void afficher_cercle(int rayon,int x_centre,int y_centre,int plein_c)
+   {
+    int x ,y ,m ,tempx,tempy;
+
+    if (plein_c == 1)
+     {
+      for(y=-rayon; y<=rayon; y++)
+       {
+        for(x=-rayon; x<=rayon; x++)
+         {
+          if(x*x+y*y <= rayon*rayon)
+           {
+             afficher_point(x_centre+x, y_centre+y, rouge, vert, bleu);
+           }
+        }
+      }
+    }
+    else
+     {
+      x = 0 ;
+      y = rayon ;
+      m = 5 - 4*rayon ;
+
+      while (x <= y )
+       {
+        tempx = x+x_centre;
+        tempy = y+y_centre;
+  		afficher_point(tempx,tempy,rouge,vert,bleu) ;
+        tempx = y+x_centre;
+        tempy = x+y_centre;
+  		afficher_point(tempx,tempy,rouge,vert,bleu ) ;
+        tempx = -x+x_centre;
+        tempy = y+y_centre;
+  		afficher_point(tempx,tempy,rouge,vert,bleu ) ;
+        tempx = -y+x_centre;
+        tempy = x+y_centre;
+  	  afficher_point(tempx,tempy ,rouge,vert,bleu) ;
+        tempx = x+x_centre;
+        tempy = -y+y_centre;
+  		afficher_point(tempx,tempy ,rouge,vert,bleu) ;
+        tempx = y+x_centre;
+        tempy = -x+y_centre;
+  		afficher_point(tempx,tempy,rouge,vert,bleu ) ;
+        tempx = -x+x_centre;
+        tempy = -y+y_centre;
+  		afficher_point(tempx,tempy,rouge,vert,bleu ) ;
+        tempx = -y+x_centre;
+        tempy = -x+y_centre;
+  		afficher_point(tempx,tempy,rouge,vert,bleu ) ;
+        if(m > 0)
+         {
+  	y = y - 1 ;
+  	m = m - 8*y ;
+         }
+        x = x + 1 ;
+        m = m + 8*x + 4 ;
+       }
+     }
+
+   }
+
+
+  void afficher_droite(int a,int b)
+   {
+    int x1, x2, y1, y2;
+
+    x1=0;
+    y1=b;
+    x2=1000;
+    y2=1000*a+b;
+
+    int dx,sx ;
+    int dy,sy ;
+    int err,e2 ;
+
+    dx = abs(x2-x1), sx = x1<x2 ? 1 : -1;
+    dy = abs(y2-y1), sy = y1<y2 ? 1 : -1;
+    err = (dx>dy ? dx : -dy)/2, e2;
+
+    for(;;)
+     {
+      afficher_point(x1, y1, rouge, vert, bleu);
+
+      if (x1==x2 && y1==y2) break;
+       e2 = err;
+
+      if (e2 >-dx)
+       {
+        err -= dy;
+        x1 += sx;
+       }
+
+      if (e2 < dy)
+       {
+        err += dx;
+        y1 += sy;
+       }
+     }
+
+   }

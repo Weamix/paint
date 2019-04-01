@@ -3,6 +3,9 @@
 #include <GL/glut.h>
 #include "opengl.h"
 
+
+
+
 #define POINT 0
 #define LIGNE 1
 #define RECTANGLE 2
@@ -45,11 +48,6 @@ void afficher_texte(int x, int y, char *string, double r, double v, double b);
 
 void afficher_point(int x, int y, double r, double v, double b);
 
-void afficher_rectangle(int maxlarge, int maxhauteur, int xbase, int ybase,int plein_r);
-
-void afficher_cercle(int rayon,int x_centre,int y_centre,int plein_c);
-
-void afficher_droite(int a,int b);
 
 void ctrly(ptglobal *sauvegarde_item_global_supp, ptglobal *sauvegarde_item_global);
 
